@@ -1,14 +1,29 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+// material import
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MContentViewModule } from './m-content-view/m-content-view.module';
 import { MFooterModule } from './m-footer/m-footer.module';
 import { MMainBodyModule } from './m-main-body/m-main-body.module';
 import { MNavbarModule } from './m-navbar/m-navbar.module';
-import { MPipeCartModule } from './m-pipe-cart/m-pipe-cart.module';
-import { MProgressPanelModule } from './m-progress-panel/m-progress-panel.module';
+// mat import end
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,11 +33,47 @@ import { MProgressPanelModule } from './m-progress-panel/m-progress-panel.module
     MMainBodyModule,
     MNavbarModule,
     MFooterModule,
-    MContentViewModule,
-    MPipeCartModule,
-    MProgressPanelModule,
+    BrowserAnimationsModule,
+    // material modules begin
+    MatCardModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatSortModule,
+    MatTableModule,
+    MatToolbarModule,
+    // material modules end
   ],
   providers: [],
   bootstrap: [AppComponent],
+  exports: [
+    // material modules begin
+    MatCardModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatSortModule,
+    MatTableModule,
+    MatToolbarModule,
+    // material modules end
+  ],
 })
 export class AppModule {}
