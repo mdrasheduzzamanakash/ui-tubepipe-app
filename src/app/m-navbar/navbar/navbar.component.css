@@ -1,0 +1,21 @@
+.example-spacer {
+    flex: 0.95 1 auto;
+  }
+
+  .logo {
+    max-height: 20px;
+    max-width: 30px;
+    /* margin-top: 5px; */
+  }
+
+  .login-signup {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    /* margin-left: 5px; */
+    flex: 0.05 1 auto;
+  }
+
+  mat-toolbar {
+    height: 40px;
+  }

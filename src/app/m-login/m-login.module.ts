@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-// material import
+import { CommonModule } from '@angular/common';
+import { LoginComponent } from './login/login.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -17,27 +17,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
-// mat import end
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { MFooterModule } from './m-footer/m-footer.module';
-import { MMainBodyModule } from './m-main-body/m-main-body.module';
-import { MNavbarModule } from './m-navbar/m-navbar.module';
-import { MLoginModule } from './m-login/m-login.module'
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    LoginComponent
+  ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MMainBodyModule,
-    MNavbarModule,
-    MFooterModule,
-    BrowserAnimationsModule,
-    MLoginModule,
-    // material modules begin
+    CommonModule,
     MatCardModule,
     MatButtonModule,
     MatCheckboxModule,
@@ -54,29 +41,9 @@ import { MLoginModule } from './m-login/m-login.module'
     MatSortModule,
     MatTableModule,
     MatToolbarModule,
-    // material modules end
   ],
-  providers: [],
-  bootstrap: [AppComponent],
   exports: [
-    // material modules begin
-    MatCardModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatNativeDateModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatPaginatorModule,
-    MatProgressBarModule,
-    MatRadioModule,
-    MatSelectModule,
-    MatSortModule,
-    MatTableModule,
-    MatToolbarModule,
-    // material modules end
-  ],
+    LoginComponent
+  ]
 })
-export class AppModule {}
+export class MLoginModule { }
