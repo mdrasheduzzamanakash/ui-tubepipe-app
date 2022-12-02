@@ -21,3 +21,23 @@
     justify-content: center;
     padding: 100px;
   }
+
+  .wrapper {
+    display: flex;
+  }
+
+  .block {
+    width: 50%;
+  }
+
+  .example-spacer {
+    flex: 0.95 1 auto;
+  }
+
+  .login-signup {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* margin-left: 5px; */
+    flex: 0.05 1 auto;
+  }
