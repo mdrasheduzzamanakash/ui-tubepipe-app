@@ -25,7 +25,8 @@ import { AppComponent } from './app.component';
 import { MFooterModule } from './m-footer/m-footer.module';
 import { MMainBodyModule } from './m-main-body/m-main-body.module';
 import { MNavbarModule } from './m-navbar/m-navbar.module';
-import { MLoginModule } from './m-login/m-login.module'
+import { MLoginModule } from './m-login/m-login.module';
+import { MRegisterModule } from './m-register/m-register.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,6 +38,7 @@ import { MLoginModule } from './m-login/m-login.module'
     MFooterModule,
     BrowserAnimationsModule,
     MLoginModule,
+    MRegisterModule,
     // material modules begin
     MatCardModule,
     MatButtonModule,
