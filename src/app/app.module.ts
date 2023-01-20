@@ -22,7 +22,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MFooterModule } from './m-footer/m-footer.module';
 import { MMainBodyModule } from './m-main-body/m-main-body.module';
 import { MNavbarModule } from './m-navbar/m-navbar.module';
 import { MLoginModule } from './m-login/m-login.module';
@@ -35,7 +34,6 @@ import { MRegisterModule } from './m-register/m-register.module';
     AppRoutingModule,
     MMainBodyModule,
     MNavbarModule,
-    MFooterModule,
     BrowserAnimationsModule,
     MLoginModule,
     MRegisterModule,
@@ -81,4 +79,4 @@ import { MRegisterModule } from './m-register/m-register.module';
     // material modules end
   ],
 })
-export class AppModule {}
+export class AppModule { }

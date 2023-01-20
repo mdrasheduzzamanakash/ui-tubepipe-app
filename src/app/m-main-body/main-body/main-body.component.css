@@ -3,14 +3,7 @@
   justify-content: center;
 }
 
-.content-view {
-  flex: 0.15 1 0;
-}
-
-.progress-panel {
-  flex: 0.15 1 0;
-}
 
 .pipe-holder {
-  flex: 0.6 1 0;
+  flex: 0.7 1 0;
 }
