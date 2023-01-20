@@ -1,24 +1,20 @@
-
 <p>
-    <mat-toolbar color="primary">
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span style="background-color: white; border-radius: 10px; box-shadow: 10px; color: black;"><span style="padding: 5px;">TubePipe</span></span>
-      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <mat-icon>favorite</mat-icon>
-      </button>
-      <span class="example-spacer"></span>
-      <div class="login-signup">
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-          Sign Up
-          <!-- <mat-icon>share</mat-icon> -->
-        </button>
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-          Login
-          <!-- <mat-icon>share</mat-icon> -->
-        </button>
-      </div>
-    </mat-toolbar>
-  </p>
-  
+  <mat-toolbar color="primary">
+    <span
+      style="
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 10px;
+        color: black;
+      "
+      ><span style="padding: 5px">TubePipe</span></span
+    >
+    <span class="example-spacer"></span>
+    <div class="login-signup">
+      <button mat-button routerLink="/create">Create</button>
+      <button mat-button routerLink="/enrol">Enrol</button>
+      <button mat-button routerLink="/login">Login</button>
+      <button mat-button routerLink="/signup">Signup</button>
+    </div>
+  </mat-toolbar>
+</p>
