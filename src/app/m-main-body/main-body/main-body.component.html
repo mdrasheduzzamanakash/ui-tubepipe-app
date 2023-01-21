@@ -1,3 +1,27 @@
 <div class="box">
-  <app-pipe-cart></app-pipe-cart>
+  <mat-card class="eachPipe" *ngFor="let eachPipe of pipeList">
+    <mat-card-title-group>
+      <mat-card-title>{{eachPipe.title}}</mat-card-title>
+      <mat-card-subtitle
+        >Created by <strong>{{eachPipe.author}}</strong></mat-card-subtitle
+      >
+      <img
+        mat-card-sm-image
+        src={{eachPipe.url}}
+      />
+    </mat-card-title-group>
+    <mat-card-content>
+      {{eachPipe.description}}
+    </mat-card-content>
+    <mat-card-actions align="start">
+      <button mat-button>
+        <mat-icon>thumb_up_alt</mat-icon><span>{{eachPipe.likes}}</span>
+      </button>
+      <button mat-button>
+        <mat-icon>thumb_down_alt</mat-icon><span>{{eachPipe.dislikes}}</span>
+      </button>
+      <button mat-button><mat-icon>share</mat-icon></button>
+    </mat-card-actions>
+  </mat-card>
+  <br />
 </div>

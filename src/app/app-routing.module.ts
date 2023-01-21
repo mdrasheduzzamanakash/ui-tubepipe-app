@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: RegisterComponent },
   { path: 'create', component: CreatePipeComponent },
+  { path: 'enrol', component: MainBodyComponent },
   { path: "**", component: MainBodyComponent }
 ];
 

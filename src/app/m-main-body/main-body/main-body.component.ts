@@ -1,6 +1,9 @@
 import { Component, Inject, inject, OnInit } from '@angular/core';
 import { AppConfig } from 'src/app/AppConfig/appconfig.interface';
 import { APP_SERVICE_CONFIG } from 'src/app/AppConfig/appconfig.serveice';
+import { LocalStorageToken } from 'src/app/localstorage.token';
+import { HomeServiceService } from '../home-service.service';
+import { SinglePipe } from '../Pipe.interface';
 
 @Component({
   selector: 'app-main-body',
@@ -9,10 +12,16 @@ import { APP_SERVICE_CONFIG } from 'src/app/AppConfig/appconfig.serveice';
 })
 export class MainBodyComponent implements OnInit {
 
-  constructor(@Inject(APP_SERVICE_CONFIG) private config: AppConfig) { }
+  pipeList : SinglePipe[] = [];
+
+  constructor(@Inject(APP_SERVICE_CONFIG) private config: AppConfig,
+    @Inject(LocalStorageToken) private localStorage: Storage,
+    private HomeServiceService: HomeServiceService
+  ) { }
 
   ngOnInit(): void {
-    console.log(this.config)
+    this.HomeServiceService.getPipes().subscribe((data: SinglePipe[]) => {
+      this.pipeList = data;
+    });
   }
-
 }
