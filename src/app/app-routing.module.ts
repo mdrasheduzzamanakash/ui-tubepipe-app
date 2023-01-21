@@ -1,14 +1,15 @@
-import { NgModule } from '@angular/core';
+import { createComponent, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NavbarComponent } from './m-navbar/navbar/navbar.component';
 import { LoginComponent } from './m-login/login/login.component';
 import { RegisterComponent } from './m-register/register/register.component';
 import { MainBodyComponent } from './m-main-body/main-body/main-body.component';
+import { CreatePipeComponent } from './m-create-pipe/create-pipe/create-pipe.component';
 
 const routes: Routes = [
   { path: '', component: MainBodyComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'signup', component: RegisterComponent },
+  { path: 'create', component: CreatePipeComponent },
   { path: "**", component: MainBodyComponent }
 ];
 
