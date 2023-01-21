@@ -27,6 +27,7 @@ import { MNavbarModule } from './m-navbar/m-navbar.module';
 import { MLoginModule } from './m-login/m-login.module';
 import { MRegisterModule } from './m-register/m-register.module';
 import { APP_CONFIG, APP_SERVICE_CONFIG } from './AppConfig/appconfig.serveice';
+import { MCreatePipeModule } from './m-create-pipe/m-create-pipe.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,6 +39,7 @@ import { APP_CONFIG, APP_SERVICE_CONFIG } from './AppConfig/appconfig.serveice';
     BrowserAnimationsModule,
     MLoginModule,
     MRegisterModule,
+    MCreatePipeModule,
     // material modules begin
     MatCardModule,
     MatButtonModule,
@@ -83,8 +85,6 @@ import { APP_CONFIG, APP_SERVICE_CONFIG } from './AppConfig/appconfig.serveice';
     MatTableModule,
     MatToolbarModule,
     // material modules end
-
-
   ],
 })
 export class AppModule { }
