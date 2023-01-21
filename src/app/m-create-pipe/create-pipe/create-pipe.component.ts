@@ -14,7 +14,15 @@ export interface Tag {
 })
 export class CreatePipeComponent implements OnInit {
   formGroup!: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) { }
+
+  valid = {
+    title: false,
+    description: false,
+    date: false,
+    tag: false,
+  }
+
 
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
@@ -30,13 +38,27 @@ export class CreatePipeComponent implements OnInit {
 
     // Clear the input value
     event.chipInput!.clear();
+
+    if(this.tags.length == 0)this.valid.tag = false;
+    else this.valid.tag = true;
+    if(this.valid.title && this.valid.description && this.valid.date && this.valid.tag) {
+      this.buttonDisabled = false;
+    } else {
+      this.buttonDisabled = true;
+    }
   }
 
-  remove(fruit: Tag): void {
-    const index = this.tags.indexOf(fruit);
+  remove(tag: Tag): void {
+    const index = this.tags.indexOf(tag);
 
     if (index >= 0) {
       this.tags.splice(index, 1);
+    } 
+    if(this.tags.length == 0)this.valid.tag = false;
+    if(this.valid.title && this.valid.description && this.valid.date && this.valid.tag) {
+      this.buttonDisabled = false;
+    } else {
+      this.buttonDisabled = true;
     }
   }
 
@@ -59,15 +81,43 @@ export class CreatePipeComponent implements OnInit {
     });
   }
 
-  showModules : boolean = false;
+  showModules: boolean = false;
+  buttonDisabled: boolean = true;
+
 
   onPipeCreate() {
     console.log(this.formGroup.getRawValue());
-    console.log(this.tags);
     this.showModules = true;
   }
 
+  dateCheck() {
+    this.valid.date = this.formGroup.get('date')?.value != null;
+    console.log(this.valid);
+    if(this.valid.title && this.valid.description && this.valid.date && this.valid.tag) {
+      this.buttonDisabled = false;
+    } else {
+      this.buttonDisabled = true;
+    }
+  }
+
+  onChange(event: Event) {
+    const name : string = (event.target as HTMLInputElement).name;
+    if(name == "title") {
+      this.valid.title = (event.target as HTMLInputElement).value.length > 0;
+    } else if(name == "description") {
+      this.valid.description = (event.target as HTMLInputElement).value.length > 0;
+    }
+    this.valid.tag = this.tags.length > 0;
+    if(this.valid.title && this.valid.description && this.valid.date && this.valid.tag) {
+      this.buttonDisabled = false;
+    } else {
+      this.buttonDisabled = true;
+    }
+    console.log(this.valid);
+  }
+
   onCancel() {
-    console.log('cancel');
+    this.showModules = false;
+    
   }
 }

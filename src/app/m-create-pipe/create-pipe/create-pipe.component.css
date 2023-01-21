@@ -52,4 +52,6 @@ h2 {
     padding: 40px;
     width: 150px;
     height: 150px;
+    cursor: pointer;
 }
+

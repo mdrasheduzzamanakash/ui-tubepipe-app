@@ -21,6 +21,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatChipsModule } from '@angular/material/chips';
+import { RouterModule } from '@angular/router';
 // mat import end
 
 @NgModule({
@@ -49,6 +50,7 @@ import { MatChipsModule } from '@angular/material/chips';
     MatToolbarModule,
     MatChipsModule,
     // material modules end
+    RouterModule
   ], exports: [
     CreatePipeComponent
   ]
