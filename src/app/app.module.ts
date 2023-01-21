@@ -26,6 +26,7 @@ import { MMainBodyModule } from './m-main-body/m-main-body.module';
 import { MNavbarModule } from './m-navbar/m-navbar.module';
 import { MLoginModule } from './m-login/m-login.module';
 import { MRegisterModule } from './m-register/m-register.module';
+import { APP_CONFIG, APP_SERVICE_CONFIG } from './AppConfig/appconfig.serveice';
 
 @NgModule({
   declarations: [AppComponent],
@@ -56,7 +57,12 @@ import { MRegisterModule } from './m-register/m-register.module';
     MatToolbarModule,
     // material modules end
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_SERVICE_CONFIG,
+      useValue: APP_CONFIG
+    }
+  ],
   bootstrap: [AppComponent],
   exports: [
     // material modules begin
@@ -77,6 +83,8 @@ import { MRegisterModule } from './m-register/m-register.module';
     MatTableModule,
     MatToolbarModule,
     // material modules end
+
+
   ],
 })
 export class AppModule { }

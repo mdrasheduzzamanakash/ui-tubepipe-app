@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, inject, OnInit } from '@angular/core';
+import { AppConfig } from 'src/app/AppConfig/appconfig.interface';
+import { APP_SERVICE_CONFIG } from 'src/app/AppConfig/appconfig.serveice';
 
 @Component({
   selector: 'app-main-body',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainBodyComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject(APP_SERVICE_CONFIG) private config: AppConfig) { }
 
   ngOnInit(): void {
+    console.log(this.config)
   }
 
 }
