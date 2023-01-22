@@ -17,6 +17,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatChipsModule} from '@angular/material/chips';
 // mat import end
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -28,6 +29,7 @@ import { MLoginModule } from './m-login/m-login.module';
 import { MRegisterModule } from './m-register/m-register.module';
 import { APP_CONFIG, APP_SERVICE_CONFIG } from './AppConfig/appconfig.serveice';
 import { MCreatePipeModule } from './m-create-pipe/m-create-pipe.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -57,7 +59,10 @@ import { MCreatePipeModule } from './m-create-pipe/m-create-pipe.module';
     MatSortModule,
     MatTableModule,
     MatToolbarModule,
+    MatChipsModule,
     // material modules end
+
+    ReactiveFormsModule
   ],
   providers: [
     {
@@ -85,6 +90,8 @@ import { MCreatePipeModule } from './m-create-pipe/m-create-pipe.module';
     MatTableModule,
     MatToolbarModule,
     // material modules end
+
+    ReactiveFormsModule
   ],
 })
 export class AppModule { }

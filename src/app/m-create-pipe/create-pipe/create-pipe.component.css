@@ -1,0 +1,70 @@
+h2 {
+    /* Create a pipe and let other flow in */
+
+
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 40px;
+    letter-spacing: -0.02em;
+    text-transform: capitalize;
+
+    color: #917E7E;
+
+    text-align: center;
+
+
+}
+
+.formContainer {
+    text-align: center;
+}
+
+.controlContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+}
+.example-chip-list {
+    width: 100%;
+  }
+
+.sep {
+    margin-top: 10px;
+}
+
+.svgContainer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.item {
+    margin-top: 50px;
+    padding: 40px;
+    width: 150px;
+    margin-left: 20px;
+    height: 150px;
+    cursor: pointer;
+    border:1px dashed #917E7E;
+    border-radius: 20px;
+}
+
+.itemHeader {
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+}
+
+.itemButton {
+    margin-left : 10px;
+    margin-right : 10px;
+}
