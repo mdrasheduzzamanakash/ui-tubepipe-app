@@ -1,1 +1,46 @@
-<p>register works!</p>
+<div class="box">
+    
+    <div>
+        <div class="example-container">
+            <mat-form-field appearance="outline" [style.width.px]=300>
+              <mat-label>First Name</mat-label>
+              <input matInput>
+              <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+              <!-- <mat-hint>Hint</mat-hint> -->
+            </mat-form-field>
+        </div>
+        <div class="example-container">
+            <mat-form-field appearance="outline" [style.width.px]=300>
+              <mat-label>Last Name</mat-label>
+              <input matInput>
+              <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+              <!-- <mat-hint>Hint</mat-hint> -->
+            </mat-form-field>
+        </div>
+        <div class="example-container">
+            <mat-form-field appearance="outline" [style.width.px]=300>
+              <mat-label>Enter your email</mat-label>
+              <input matInput placeholder="pat@example.com" [formControl]="email" required>
+              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="example-container">
+            <mat-form-field appearance="outline" [style.width.px]=300>
+              <mat-label>Enter your password</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+        </div>
+        <span class="example-spacer"></span>
+    <div class="login-signup">
+        <button mat-raised-button color="primary" >Register</button>
+        <!-- <span class="btn-align"></span> -->
+        <button mat-raised-button color="primary" >Calcel</button>
+    </div>
+
+    </div>
+      
+</div>
