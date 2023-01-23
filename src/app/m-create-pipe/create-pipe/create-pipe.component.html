@@ -346,6 +346,7 @@
         color="warn"
         type="button"
         (click)="onCancel('blog')"
+        (click)="onCancel('youtube')"
       >
         Cancel
       </button>
@@ -556,10 +557,30 @@
     src="./../../../assets/youtube.svg"
     alt=""
     class="item"
-    routerLink="youtube"
+    (click)="onSelect('youtube')"
   />
-  <img src="./../../../assets/blogger.svg" alt="" class="item" />
-  <img src="./../../../assets/live-broadcast.svg" alt="" class="item" />
-  <img src="./../../../assets/upload.svg" alt="" class="item" />
-  <img src="./../../../assets/courses.svg" alt="" class="item" />
+  <img
+    src="./../../../assets/blogger.svg"
+    alt=""
+    class="item"
+    (click)="onSelect('blog')"
+  />
+  <img
+    src="./../../../assets/live-broadcast.svg"
+    alt=""
+    class="item"
+    (click)="onSelect('live')"
+  />
+  <img
+    src="./../../../assets/upload.svg"
+    alt=""
+    class="item"
+    (click)="onSelect('upload')"
+  />
+  <img
+    src="./../../../assets/courses.svg"
+    alt=""
+    class="item"
+    (click)="onSelect('course')"
+  />
 </div>

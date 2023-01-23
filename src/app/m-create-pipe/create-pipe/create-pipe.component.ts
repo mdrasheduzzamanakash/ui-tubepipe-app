@@ -4,6 +4,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { blog, course, live, pipeModules, youtube } from './module-interface';
 import { pipe } from 'rxjs';
+import { HomeServiceService } from 'src/app/m-main-body/home-service.service';
 
 export interface Tag {
   name: string;
@@ -16,7 +17,7 @@ export interface Tag {
 })
 export class CreatePipeComponent implements OnInit {
   formGroup!: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private api: HomeServiceService) { }
 
   valid = {
     title: false,
@@ -149,12 +150,36 @@ export class CreatePipeComponent implements OnInit {
   isYoutube: boolean = false;
   isBlog: boolean = false;
   isCourse: boolean = false;
-  isLive: boolean = true;
+  isLive: boolean = false;
   showFinish: boolean = false;
-  introFormHidden: boolean = true;
+  introFormHidden: boolean = false;
+
+  onSelect(param: string) {
+    this.showModules = false;
+    this.introFormHidden = true;
+    if (param == 'youtube') {
+      this.isYoutube = true;
+    } else if (param == 'blog') {
+      this.isBlog = true;
+    } else if (param == 'course') {
+      this.isCourse = true;
+    } else if (param == 'live') {
+      this.isLive = true;
+    }
+  }
 
   onCancel(param: string) {
     this.showModules = false;
+    this.introFormHidden = false;
+    if (param == 'youtube') {
+      this.isYoutube = false;
+    } else if (param == 'blog') {
+      this.isBlog = false;
+    } else if (param == 'course') {
+      this.isCourse = false;
+    } else if (param == 'live') {
+      this.isLive = false;
+    }
   }
 
   pipeModules: pipeModules = {
@@ -182,7 +207,9 @@ export class CreatePipeComponent implements OnInit {
       rangeEnd: +this.youtubeForm.get('rangeEnd')?.value!,
     };
     this.pipeModules.youtube.push(youtube);
-    console.log(this.pipeModules);
+    if (isFinished) {
+      this.onFinish();
+    }
   }
 
   validYoutube = {
@@ -353,6 +380,12 @@ export class CreatePipeComponent implements OnInit {
       isDeleted: false,
       author: 'mdrashed@gmail.com',
     };
-    console.log(finalPipe);
+    this.api.postPipe(finalPipe).subscribe(data => {
+      this.isYoutube = false;
+      this.isBlog = false;
+      this.isLive = false;
+      this.isCourse = false;
+      this.introFormHidden = false;
+    })
   }
 }
