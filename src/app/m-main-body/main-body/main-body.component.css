@@ -8,4 +8,5 @@
 .eachPipe{
   margin:10px;
   border: dashed 1px #000;
+  min-width: 1000px;
 }
