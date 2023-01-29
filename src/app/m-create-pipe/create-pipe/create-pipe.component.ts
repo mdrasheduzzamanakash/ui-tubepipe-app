@@ -97,6 +97,8 @@ export class CreatePipeComponent implements OnInit {
     });
   }
 
+
+
   showModules: boolean = false;
   buttonDisabled: boolean = true;
 
@@ -205,6 +207,8 @@ export class CreatePipeComponent implements OnInit {
       note: this.youtubeForm.get('note')?.value!,
       rangeStart: +this.youtubeForm.get('rangeStart')?.value!,
       rangeEnd: +this.youtubeForm.get('rangeEnd')?.value!,
+      sequence: 0,
+      category: 'youtube'
     };
     this.pipeModules.youtube.push(youtube);
     if (isFinished) {
@@ -220,7 +224,7 @@ export class CreatePipeComponent implements OnInit {
     rangeEnd: false,
   };
 
-  isYoutueButtonDisabled: boolean = false;
+  isYoutueButtonDisabled: boolean = true;
   onChangeYoutube(event: Event) {
     const name: string = (event.target as HTMLInputElement).name;
     if (name == 'title') {
@@ -239,6 +243,15 @@ export class CreatePipeComponent implements OnInit {
       this.validYoutube.rangeEnd =
         (event.target as HTMLInputElement).value.length > 0;
     }
+    if (
+      this.validYoutube.title &&
+      this.validYoutube.link &&
+      this.validYoutube.note &&
+      this.validYoutube.rangeStart &&
+      this.validYoutube.rangeEnd
+    ) {
+      this.isYoutueButtonDisabled = false;
+    }
   }
 
   // for blog
@@ -253,6 +266,8 @@ export class CreatePipeComponent implements OnInit {
       title: this.blogForm.get('title')?.value!,
       link: this.blogForm.get('link')?.value!,
       note: this.blogForm.get('note')?.value!,
+      sequence: 0,
+      category: 'blog'
     };
     this.pipeModules.blog.push(blog);
     console.log(this.pipeModules);
@@ -264,7 +279,7 @@ export class CreatePipeComponent implements OnInit {
     note: false,
   };
 
-  isBlogButtonDisabled: boolean = false;
+  isBlogButtonDisabled: boolean = true;
   onChangeBlog(event: Event) {
     const name: string = (event.target as HTMLInputElement).name;
     if (name == 'title') {
@@ -274,6 +289,9 @@ export class CreatePipeComponent implements OnInit {
       this.validBlog.link = (event.target as HTMLInputElement).value.length > 0;
     } else if (name == 'note') {
       this.validBlog.note = (event.target as HTMLInputElement).value.length > 0;
+    }
+    if (this.validBlog.title && this.validBlog.link && this.validBlog.note) {
+      this.isBlogButtonDisabled = false;
     }
   }
 
@@ -292,6 +310,8 @@ export class CreatePipeComponent implements OnInit {
       note: this.courseForm.get('note')?.value!,
       isPaid: this.courseForm.get('isPaid')?.value! == 'true' ? true : false,
       price: +this.courseForm.get('price')?.value!,
+      sequence: 0,
+      category: 'course'
     };
 
     this.pipeModules.course.push(course);
@@ -306,7 +326,7 @@ export class CreatePipeComponent implements OnInit {
     price: false,
   };
 
-  isCourseButtonDisabled: boolean = false;
+  isCourseButtonDisabled: boolean = true;
   onChangeCourse(event: Event) {
     const name: string = (event.target as HTMLInputElement).name;
     if (name == 'title') {
@@ -325,6 +345,15 @@ export class CreatePipeComponent implements OnInit {
       this.validCourse.price =
         (event.target as HTMLInputElement).value.length > 0;
     }
+    if (
+      this.validCourse.title &&
+      this.validCourse.link &&
+      this.validCourse.note &&
+      this.validCourse.isPaid &&
+      this.validCourse.price
+    ) {
+      this.isCourseButtonDisabled = false;
+    }
   }
 
   // for live
@@ -340,6 +369,8 @@ export class CreatePipeComponent implements OnInit {
       title: this.liveForm.get('title')?.value!,
       link: this.liveForm.get('link')?.value!,
       note: this.liveForm.get('note')?.value!,
+      sequence: 0,
+      category: 'live'
     };
     this.pipeModules.live.push(live);
     console.log(this.pipeModules);
@@ -351,7 +382,7 @@ export class CreatePipeComponent implements OnInit {
     note: false,
   };
 
-  isLiveButtonDisabled: boolean = false;
+  isLiveButtonDisabled: boolean = true;
   onChangeLive(event: Event) {
     const name: string = (event.target as HTMLInputElement).name;
     if (name == 'title') {
@@ -361,6 +392,9 @@ export class CreatePipeComponent implements OnInit {
       this.validLive.link = (event.target as HTMLInputElement).value.length > 0;
     } else if (name == 'note') {
       this.validLive.note = (event.target as HTMLInputElement).value.length > 0;
+    }
+    if (this.validLive.title && this.validLive.link && this.validLive.note) {
+      this.isLiveButtonDisabled = false;
     }
   }
 

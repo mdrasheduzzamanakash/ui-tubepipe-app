@@ -1,4 +1,5 @@
 {
     "/api/pipes": "/pipes",
+    "/api/pipes/:id": "/pipes?id=:id&singular=1",
     "/api/peoples": "/peoples"
 }

@@ -4,6 +4,8 @@ export interface youtube {
     note: string;
     rangeStart: number;
     rangeEnd: number;
+    sequence: number;
+    category: string;
 }
 
 
@@ -11,6 +13,8 @@ export interface blog {
     title: string;
     link: string;
     note: string;
+    sequence: number;
+    category: string;
 }
 
 export interface course {
@@ -19,12 +23,16 @@ export interface course {
     note: string;
     isPaid: boolean;
     price: number;
+    sequence: number;
+    category: string;
 }
 
 export interface live {
     title: string;
     link: string;
     note: string;
+    sequence: number;
+    category: string;
 }
 
 export interface pipeModules {

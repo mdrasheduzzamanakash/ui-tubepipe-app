@@ -20,6 +20,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [MainBodyComponent],
@@ -42,6 +43,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatSortModule,
     MatTableModule,
     MatToolbarModule,
+    RouterModule
   ],
   providers: [
     {
@@ -49,6 +51,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
       useValue: APP_CONFIG
     }
   ],
-  exports: [MainBodyComponent],
+  exports: [MainBodyComponent,],
 })
 export class MMainBodyModule { }

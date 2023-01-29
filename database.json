@@ -24,124 +24,198 @@
         }
       ],
       "date": "2017-01-01",
-      "module_ids": [
-        1,
-        2,
-        3
-      ],
-      "impactFactor": 1.5,
-      "isHidden": false,
-      "isDeleted": false
-    },
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode",
-      "description": "Fake REST API based on a json schema. Useful for mocking and creating APIs for front-end devs to consume in coding challenges.",
-      "likes": 10,
-      "dislikes": 2,
-      "url": "https://angular.io/assets/images/logos/angularjs/AngularJS-Shield.svg",
-      "tags": [
-        "angular",
-        "javascript",
-        "frontend"
-      ],
-      "comments": [
-        {
-          "author": "John",
-          "comment": "This is a comment"
-        },
-        {
-          "author": "Jane",
-          "comment": "This is another comment"
-        }
-      ],
-      "date": "2017-01-01",
-      "module_ids": [
-        1,
-        2,
-        3
-      ],
-      "impactFactor": 1.5,
-      "isHidden": false,
-      "isDeleted": false
-    },
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode",
-      "description": "Fake REST API based on a json schema. Useful for mocking and creating APIs for front-end devs to consume in coding challenges.",
-      "likes": 10,
-      "dislikes": 2,
-      "url": "https://angular.io/assets/images/logos/angularjs/AngularJS-Shield.svg",
-      "tags": [
-        "angular",
-        "javascript",
-        "frontend"
-      ],
-      "comments": [
-        {
-          "author": "John",
-          "comment": "This is a comment"
-        },
-        {
-          "author": "Jane",
-          "comment": "This is another comment"
-        }
-      ],
-      "date": "2017-01-01",
-      "module_ids": [
-        1,
-        2,
-        3
-      ],
-      "impactFactor": 1.5,
-      "isHidden": false,
-      "isDeleted": false
-    },
-    {
-      "title": "Physics",
-      "description": "Led by jabed",
-      "date": "2023-01-10T18:00:00.000Z",
-      "tags": [
-        {
-          "name": "Angular"
-        },
-        {
-          "name": "Javascript"
-        },
-        {
-          "name": "React"
-        }
-      ],
       "modules": {
         "youtube": [
           {
-            "title": "Jebed",
-            "link": "https://www.youtube.com/watch?v=Xhn7NFrJDgs&list=PLzRK77J3QG7muGySCiR47ziBtQdpFheW2&ab_channel=Jabed%27sSpecialCare",
-            "note": "fa",
-            "rangeStart": 1,
-            "rangeEnd": 2
+            "title": "Learn basic angular",
+            "link": "https://www.youtube.com/watch?v=2OHbjep_WjQ",
+            "note": "Must do these basic steps",
+            "rangeStart": 23,
+            "rangeEnd": 2,
+            "sequence": 1,
+            "category": "youtube"
+          }
+        ],
+        "blog": [
+          {
+            "title": "A Short description of the blog",
+            "link": "https://www.youtube.com/watch?v=2OHbjep_WjQ",
+            "note": "You may go some deeper into the topic",
+            "sequence": 6,
+            "category": "blog"
+          }
+        ],
+        "course": [
+          {
+            "title": "A Short description of the blog",
+            "link": "https://www.youtube.com/watch?v=2OHbjep_WjQ",
+            "note": "You may go some deeper into the topic",
+            "sequence": 6,
+            "isPaid": true,
+            "price": 100,
+            "category": "course"
+          }
+        ],
+        "live": [
+          {
+            "title": "A Short description of the blog",
+            "link": "https://www.youtube.com/watch?v=2OHbjep_WjQ",
+            "note": "You may go some deeper into the topic",
+            "sequence": 6,
+            "category": "live"
+          }
+        ]
+      },
+      "impactFactor": 1.5,
+      "isHidden": false,
+      "isDeleted": false
+    },
+    {
+      "id": 2,
+      "title": "json-server",
+      "author": "typicode",
+      "description": "Fake REST API based on a json schema. Useful for mocking and creating APIs for front-end devs to consume in coding challenges.",
+      "likes": 10,
+      "dislikes": 2,
+      "url": "https://angular.io/assets/images/logos/angularjs/AngularJS-Shield.svg",
+      "tags": [
+        "angular",
+        "javascript",
+        "frontend"
+      ],
+      "comments": [
+        {
+          "author": "John",
+          "comment": "This is a comment"
+        },
+        {
+          "author": "Jane",
+          "comment": "This is another comment"
+        }
+      ],
+      "date": "2017-01-01",
+      "modules": {
+        "youtube": [
+          {
+            "title": "fdsa",
+            "link": "fdsa",
+            "note": "sadf",
+            "rangeStart": 23,
+            "rangeEnd": 2,
+            "sequence": 1,
+            "category": "youtube"
+          },
+          {
+            "title": "fdsa",
+            "link": "fdsa",
+            "note": "sadf",
+            "rangeStart": 23,
+            "rangeEnd": 2,
+            "sequence": 2,
+            "category": "youtube"
+          },
+          {
+            "title": "fdsa",
+            "link": "fdsa",
+            "note": "sadf",
+            "rangeStart": 23,
+            "rangeEnd": 2,
+            "sequence": 3,
+            "category": "youtube"
+          },
+          {
+            "title": "fdsa",
+            "link": "fdsa",
+            "note": "sadf",
+            "rangeStart": 23,
+            "rangeEnd": 2,
+            "sequence": 3,
+            "category": "youtube"
           }
         ],
         "blog": [],
         "course": [],
         "live": []
       },
-      "url": "",
-      "likes": 0,
-      "dislikes": 0,
-      "comments": [],
-      "impactFactor": 0,
+      "impactFactor": 1.5,
       "isHidden": false,
-      "isDeleted": false,
-      "author": "mdrashed@gmail.com",
-      "id": 2
+      "isDeleted": false
     },
     {
-      "title": "Physics",
-      "description": "Led by jabed",
-      "date": "2023-01-10T18:00:00.000Z",
+      "id": 3,
+      "title": "json-server",
+      "author": "typicode",
+      "description": "Fake REST API based on a json schema. Useful for mocking and creating APIs for front-end devs to consume in coding challenges.",
+      "likes": 10,
+      "dislikes": 2,
+      "url": "https://angular.io/assets/images/logos/angularjs/AngularJS-Shield.svg",
+      "tags": [
+        "angular",
+        "javascript",
+        "frontend"
+      ],
+      "comments": [
+        {
+          "author": "John",
+          "comment": "This is a comment"
+        },
+        {
+          "author": "Jane",
+          "comment": "This is another comment"
+        }
+      ],
+      "date": "2017-01-01",
+      "modules": {
+        "youtube": [
+          {
+            "title": "fdsa",
+            "link": "fdsa",
+            "note": "sadf",
+            "rangeStart": 23,
+            "rangeEnd": 2,
+            "sequence": 1,
+            "category": "youtube"
+          },
+          {
+            "title": "fdsa",
+            "link": "fdsa",
+            "note": "sadf",
+            "rangeStart": 23,
+            "rangeEnd": 2,
+            "sequence": 2,
+            "category": "youtube"
+          },
+          {
+            "title": "fdsa",
+            "link": "fdsa",
+            "note": "sadf",
+            "rangeStart": 23,
+            "rangeEnd": 2,
+            "sequence": 3,
+            "category": "youtube"
+          },
+          {
+            "title": "fdsa",
+            "link": "fdsa",
+            "note": "sadf",
+            "rangeStart": 23,
+            "rangeEnd": 2,
+            "sequence": 3,
+            "category": "youtube"
+          }
+        ],
+        "blog": [],
+        "course": [],
+        "live": []
+      },
+      "impactFactor": 1.5,
+      "isHidden": false,
+      "isDeleted": false
+    },
+    {
+      "title": "Physic",
+      "description": "dsfa",
+      "date": "2023-01-18T18:00:00.000Z",
       "tags": [
         {
           "name": "Angular"
@@ -156,18 +230,13 @@
       "modules": {
         "youtube": [
           {
-            "title": "Jebed",
-            "link": "https://www.youtube.com/watch?v=Xhn7NFrJDgs&list=PLzRK77J3QG7muGySCiR47ziBtQdpFheW2&ab_channel=Jabed%27sSpecialCare",
-            "note": "fa",
-            "rangeStart": 1,
-            "rangeEnd": 2
-          },
-          {
-            "title": "Jebed",
-            "link": "https://www.youtube.com/watch?v=Xhn7NFrJDgs&list=PLzRK77J3QG7muGySCiR47ziBtQdpFheW2&ab_channel=Jabed%27sSpecialCare",
-            "note": "fa",
-            "rangeStart": 1,
-            "rangeEnd": 2
+            "title": "fdsa",
+            "link": "fdsa",
+            "note": "sadf",
+            "rangeStart": 23,
+            "rangeEnd": 2,
+            "sequence": 1,
+            "category": "youtube"
           }
         ],
         "blog": [],
@@ -183,6 +252,47 @@
       "isDeleted": false,
       "author": "mdrashed@gmail.com",
       "id": 3
+    },
+    {
+      "title": "sdaf",
+      "description": "fsa",
+      "date": "2023-01-08T18:00:00.000Z",
+      "tags": [
+        {
+          "name": "Angular"
+        },
+        {
+          "name": "Javascript"
+        },
+        {
+          "name": "React"
+        }
+      ],
+      "modules": {
+        "youtube": [
+          {
+            "title": "fas",
+            "link": "sfa",
+            "note": "sdfa",
+            "rangeStart": 2,
+            "rangeEnd": null,
+            "sequence": 1,
+            "category": "youtube"
+          }
+        ],
+        "blog": [],
+        "course": [],
+        "live": []
+      },
+      "url": "",
+      "likes": 0,
+      "dislikes": 0,
+      "comments": [],
+      "impactFactor": 0,
+      "isHidden": false,
+      "isDeleted": false,
+      "author": "mdrashed@gmail.com",
+      "id": 4
     }
   ]
 }

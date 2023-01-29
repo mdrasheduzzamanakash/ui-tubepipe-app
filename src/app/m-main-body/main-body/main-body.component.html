@@ -1,6 +1,6 @@
 <div class="box">
   <mat-card class="eachPipe" *ngFor="let eachPipe of pipeList">
-    <mat-card-title-group>
+    <mat-card-title-group style="cursor: pointer;" [routerLink]="['/pipeDetails', eachPipe.id]">
       <mat-card-title>{{eachPipe.title}}</mat-card-title>
       <mat-card-subtitle
         >Created by <strong>{{eachPipe.author}}</strong></mat-card-subtitle

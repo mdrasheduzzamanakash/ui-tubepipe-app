@@ -30,6 +30,7 @@ import { MRegisterModule } from './m-register/m-register.module';
 import { APP_CONFIG, APP_SERVICE_CONFIG } from './AppConfig/appconfig.serveice';
 import { MCreatePipeModule } from './m-create-pipe/m-create-pipe.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MPipeDetailedModule } from './m-pipe-detailed/m-pipe-detailed.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -42,6 +43,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MLoginModule,
     MRegisterModule,
     MCreatePipeModule,
+    MPipeDetailedModule,
     // material modules begin
     MatCardModule,
     MatButtonModule,

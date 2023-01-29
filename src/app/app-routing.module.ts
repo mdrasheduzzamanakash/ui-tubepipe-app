@@ -4,6 +4,7 @@ import { LoginComponent } from './m-login/login/login.component';
 import { RegisterComponent } from './m-register/register/register.component';
 import { MainBodyComponent } from './m-main-body/main-body/main-body.component';
 import { CreatePipeComponent } from './m-create-pipe/create-pipe/create-pipe.component';
+import { PipeDetailedComponent } from './m-pipe-detailed/pipe-detailed/pipe-detailed.component';
 
 const routes: Routes = [
   { path: '', component: MainBodyComponent },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'signup', component: RegisterComponent },
   { path: 'create', component: CreatePipeComponent },
   { path: 'enrol', component: MainBodyComponent },
+  {path: 'pipeDetails/:id', component : PipeDetailedComponent},
   { path: "**", component: MainBodyComponent }
 ];
 

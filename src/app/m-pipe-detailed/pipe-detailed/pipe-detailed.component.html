@@ -1,0 +1,104 @@
+<div class="container">
+
+    <div class="itemleft">
+        <img class="leftImage" src='{{pipeDetails.url}}' alt="">
+    </div>
+    <div class="itemRight">
+        <div *ngFor="let module of allModules" class="itemRightModule">
+            <div *ngIf="module.category=='youtube'" class="youtubeModule">
+                <div class="itemYoutubeModuleLeft" (click)="onClickYoutube(module.link)">
+
+                    <div class="itemYoutubeModuleLeftHeader">
+                        <div class="itemYoutubeModuleLeftHeaderTitle">{{module.title}}</div>
+                        <div class="itemYoutubeModuleLeftHeaderImage">
+                            <img src='../../../assets/youtube.svg' alt="">
+                        </div>
+                    </div>
+
+                    <!-- <div class="itemYoutubeModuleLeftHeader">{{module.title}}</div> -->
+                    <div class="itemYoutubeModuleLeftRange">
+                        <div class="itemYoutubeModuleLeftRange">From video {{module.rangeStart}} to {{module.rangeEnd}}
+                        </div>
+                        <div class="itemYoutubeModuleLeftNote">{{module.note}}</div>
+                    </div>
+                </div>
+                <div class="itemYoutubeModuleRight">
+                    <button mat-button color="primary">Add module as completed</button>
+                </div>
+            </div>
+
+
+            <div *ngIf="module.category=='blog'" class="youtubeModule">
+                <div class="itemYoutubeModuleLeft" (click)="onClickBlog(module.link)">
+
+                    <div class="itemYoutubeModuleLeftHeader">
+                        <div class="itemYoutubeModuleLeftHeaderTitle">{{module.title}}</div>
+                        <div class="itemYoutubeModuleLeftHeaderImage">
+                            <img src='../../../assets/blogger.svg' alt="">
+                        </div>
+                    </div>
+
+                    <!-- <div class="itemYoutubeModuleLeftHeader">{{module.title}}</div> -->
+                    <div class="itemYoutubeModuleLeftRange">
+                        <!-- <div class="itemYoutubeModuleLeftRange">From video {{module.rangeStart}} to {{module.rangeEnd}}</div> -->
+                        <div class="itemYoutubeModuleLeftNote">{{module.note}}</div>
+                    </div>
+                </div>
+                <div class="itemYoutubeModuleRight">
+                    <button mat-button color="primary">Add module as completed</button>
+                </div>
+            </div>
+
+
+            <div *ngIf="module.category=='course'" class="youtubeModule">
+                <div class="itemYoutubeModuleLeft" (click)="onClickCourse(module.link)">
+
+                    <div class="itemYoutubeModuleLeftHeader">
+                        <div class="itemYoutubeModuleLeftHeaderTitle">{{module.title}}</div>
+                        <div class="itemYoutubeModuleLeftHeaderImage">
+                            <img class="itemYoutubeModuleLeftHeaderImageforCourse" src='../../../assets/courses.svg'
+                                alt="">
+                        </div>
+                    </div>
+
+                    <!-- <div class="itemYoutubeModuleLeftHeader">{{module.title}}</div> -->
+                    <div class="itemYoutubeModuleLeftRange">
+                        <!-- <div class="itemYoutubeModuleLeftRange">From video {{module.rangeStart}} to {{module.rangeEnd}}</div> -->
+                        <div class="itemYoutubeModuleLeftNote">{{module.note}}</div>
+                    </div>
+                </div>
+                <div class="itemYoutubeModuleRight">
+                    <button mat-button color="primary">Add module as completed</button>
+                </div>
+            </div>
+
+
+
+            <div *ngIf="module.category=='live'" class="youtubeModule">
+                <div class="itemYoutubeModuleLeft">
+
+                    <div class="itemYoutubeModuleLeftHeader">
+                        <div class="itemYoutubeModuleLeftHeaderTitle">{{module.title}}</div>
+                        <div class="itemYoutubeModuleLeftHeaderImage">
+                            <img class="itemYoutubeModuleLeftHeaderImageforLive"
+                                src='../../../assets/live-broadcast.svg' alt="">
+                        </div>
+                    </div>
+
+                    <!-- <div class="itemYoutubeModuleLeftHeader">{{module.title}}</div> -->
+                    <div class="itemYoutubeModuleLeftRange">
+                        <!-- <div class="itemYoutubeModuleLeftRange">From video {{module.rangeStart}} to {{module.rangeEnd}}</div> -->
+                        <div class="itemYoutubeModuleLeftNote">{{module.note}}</div>
+                    </div>
+                </div>
+                <div class="itemYoutubeModuleRight">
+                    <button mat-button color="primary">Add module as completed</button>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>
