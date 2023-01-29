@@ -1,118 +1,67 @@
 <h2>Create a pipe and let other flow in</h2>
-<div
-  *ngIf="isYoutube"
-  style="
+<div *ngIf="isYoutube" style="
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-  "
->
+  ">
   <img src="./../../../assets/youtube.svg" alt="" class="itemHeader" />
   <h2 style="margin-top: 20px">Youtube module being added</h2>
 </div>
 
-<div
-  *ngIf="isBlog"
-  style="
+<div *ngIf="isBlog" style="
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-  "
->
+  ">
   <img src="./../../../assets/blogger.svg" alt="" class="itemHeader" />
   <h2 style="margin-top: 20px">Blog module being added</h2>
 </div>
 
-<div
-  *ngIf="isCourse"
-  style="
+<div *ngIf="isCourse" style="
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-  "
->
+  ">
   <img src="./../../../assets/courses.svg" alt="" class="itemHeader" />
   <h2 style="margin-top: 20px">Course module being added</h2>
 </div>
 
-<div
-  *ngIf="isLive"
-  style="
+<div *ngIf="isLive" style="
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-  "
->
+  ">
   <img src="./../../../assets/live-broadcast.svg" alt="" class="itemHeader" />
   <h2 style="margin-top: 20px">Live module being added</h2>
 </div>
 
 <div class="formContainer">
-  <form
-    [class.cdk-visually-hidden]="introFormHidden"
-    class="controlContainer"
-    [formGroup]="formGroup"
-    (ngSubmit)="onPipeCreate()"
-  >
-    <mat-form-field
-      class="reduce-width"
-      [style.width.px]="500"
-      appearance="outline"
-    >
+  <form [class.cdk-visually-hidden]="introFormHidden" class="controlContainer" [formGroup]="formGroup"
+    (ngSubmit)="onPipeCreate()">
+    <mat-form-field class="reduce-width" [style.width.px]="500" appearance="outline">
       <mat-label>Title</mat-label>
-      <input
-        required
-        matInput
-        type="text"
-        formControlName="title"
-        name="title"
-        (input)="onChange($event)"
-      />
+      <input required matInput type="text" formControlName="title" name="title" (input)="onChange($event)" />
     </mat-form-field>
 
-    <mat-form-field
-      class="reduce-width"
-      [style.width.px]="500"
-      appearance="outline"
-    >
+    <mat-form-field class="reduce-width" [style.width.px]="500" appearance="outline">
       <mat-label>Description</mat-label>
-      <input
-        required
-        matInput
-        type="text"
-        formControlName="description"
-        name="description"
-        (input)="onChange($event)"
-      />
+      <input required matInput type="text" formControlName="description" name="description"
+        (input)="onChange($event)" />
     </mat-form-field>
 
-    <mat-form-field
-      class="reduce-width"
-      [style.width.px]="500"
-      appearance="outline"
-    >
+    <mat-form-field class="reduce-width" [style.width.px]="500" appearance="outline">
       <mat-label>Choose a date</mat-label>
-      <input
-        matInput
-        [matDatepicker]="picker"
-        formControlName="date"
-        onchange="onChange()"
-        name="date"
-        (dateChange)="dateCheck()"
-      />
+      <input matInput [matDatepicker]="picker" formControlName="date" onchange="onChange()" name="date"
+        (dateChange)="dateCheck()" />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
-    <mat-form-field
-      class="reduce-width"
-      [style.width.px]="500"
-      appearance="outline"
-    >
+    <mat-form-field class="reduce-width" [style.width.px]="500" appearance="outline">
       <mat-label>Appropriate tags</mat-label>
       <mat-chip-list #chipList aria-label="Fruit selection">
         <mat-chip *ngFor="let tag of tags" (removed)="remove(tag)">
@@ -121,22 +70,13 @@
             <mat-icon>cancel</mat-icon>
           </button>
         </mat-chip>
-        <input
-          placeholder="New fruit..."
-          [matChipInputFor]="chipList"
-          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-          [matChipInputAddOnBlur]="addOnBlur"
-          (matChipInputTokenEnd)="add($event)"
-        />
+        <input placeholder="New fruit..." [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+          (matChipInputTokenEnd)="add($event)" />
       </mat-chip-list>
     </mat-form-field>
 
-    <button
-      [disabled]="buttonDisabled"
-      mat-raised-button
-      color="primary"
-      [style.width.px]="500"
-    >
+    <button [disabled]="buttonDisabled" mat-raised-button color="primary" [style.width.px]="500">
       Add a module
     </button>
   </form>
@@ -144,443 +84,185 @@
 
 <div></div>
 
+
+<!-- youtube module begin -->
 <div class="formContainer">
-  <form
-    [class.cdk-visually-hidden]="!isYoutube"
-    class="controlContainer"
-    [formGroup]="youtubeForm"
-    (ngSubmit)="onYoutubeAdd(true)"
-  >
-    <mat-form-field
-      class="reduce-width"
-      [style.width.px]="500"
-      appearance="outline"
-    >
+  <form [class.cdk-visually-hidden]="!isYoutube" class="controlContainer" [formGroup]="youtubeForm"
+    (ngSubmit)="onYoutubeAdd(true)">
+    <mat-form-field class="reduce-width" [style.width.px]="500" appearance="outline">
       <mat-label>Title</mat-label>
-      <input
-        required
-        matInput
-        type="text"
-        formControlName="title"
-        name="title"
-        (input)="onChangeYoutube($event)"
-      />
+      <input required matInput type="text" formControlName="title" name="title" (input)="onChangeYoutube($event)" />
     </mat-form-field>
 
-    <mat-form-field
-      class="reduce-width"
-      [style.width.px]="500"
-      appearance="outline"
-    >
+    <mat-form-field class="reduce-width" [style.width.px]="500" appearance="outline">
       <mat-label>Playlist Link</mat-label>
-      <input
-        required
-        matInput
-        type="text"
-        formControlName="link"
-        name="link"
-        (input)="onChangeYoutube($event)"
-      />
+      <input required matInput type="text" formControlName="link" name="link" (input)="onChangeYoutube($event)" />
     </mat-form-field>
-    <mat-form-field
-      class="reduce-width"
-      [style.width.px]="500"
-      appearance="outline"
-    >
+    <mat-form-field class="reduce-width" [style.width.px]="500" appearance="outline">
       <mat-label>Note</mat-label>
-      <input
-        required
-        matInput
-        type="text"
-        formControlName="note"
-        name="note"
-        (input)="onChangeYoutube($event)"
-      />
+      <input required matInput type="text" formControlName="note" name="note" (input)="onChangeYoutube($event)" />
     </mat-form-field>
-    <mat-form-field
-      class="reduce-width"
-      [style.width.px]="500"
-      appearance="outline"
-    >
+    <mat-form-field class="reduce-width" [style.width.px]="500" appearance="outline">
       <mat-label>rangeStart</mat-label>
-      <input
-        required
-        matInput
-        type="text"
-        formControlName="rangeStart"
-        name="rangeStart"
-        (input)="onChangeYoutube($event)"
-      />
+      <input required matInput type="text" formControlName="rangeStart" name="rangeStart"
+        (input)="onChangeYoutube($event)" />
     </mat-form-field>
 
-    <mat-form-field
-      class="reduce-width"
-      [style.width.px]="500"
-      appearance="outline"
-    >
+    <mat-form-field class="reduce-width" [style.width.px]="500" appearance="outline">
       <mat-label>RangeEnd</mat-label>
-      <input
-        required
-        matInput
-        type="text"
-        formControlName="rangeEnd"
-        name="rangeEnd"
-        (input)="onChangeYoutube($event)"
-      />
+      <input required matInput type="text" formControlName="rangeEnd" name="rangeEnd"
+        (input)="onChangeYoutube($event)" />
     </mat-form-field>
 
     <div class="svgContainer">
-      <button
-        class="itemButton"
-        [disabled]="isYoutueButtonDisabled"
-        mat-raised-button
-        color="primary"
-        (click)="onYoutubeAdd(true)"
-      >
+      <button class="itemButton" [disabled]="isYoutueButtonDisabled" mat-raised-button color="primary">
         Finish
       </button>
 
-      <button
-        class="itemButton"
-        [disabled]="isYoutueButtonDisabled"
-        mat-raised-button
-        color="primary"
-        type="button"
-        (click)="onYoutubeAdd(false)"
-      >
+      <button class="itemButton" [disabled]="isYoutueButtonDisabled" mat-raised-button color="primary" type="button"
+        (click)="onYoutubeAdd(false)">
         Add Another Module
       </button>
 
-      <button
-        class="itemButton"
-        mat-raised-button
-        color="warn"
-        type="button"
-        (click)="onCancel('youtube')"
-      >
+      <button class="itemButton" mat-raised-button color="warn" type="button" (click)="onCancel('youtube')">
         Cancel
       </button>
     </div>
   </form>
 </div>
 
+<!-- youtube module end -->
+
+
+
+<!-- blog module begin -->
 <div class="formContainer">
-  <form
-    [class.cdk-visually-hidden]="!isBlog"
-    class="controlContainer"
-    [formGroup]="blogForm"
-    (ngSubmit)="onBlogAdd(true)"
-  >
-    <mat-form-field
-      class="reduce-width"
-      [style.width.px]="500"
-      appearance="outline"
-    >
+  <form [class.cdk-visually-hidden]="!isBlog" class="controlContainer" [formGroup]="blogForm"
+    (ngSubmit)="onBlogAdd(true)">
+    <mat-form-field class="reduce-width" [style.width.px]="500" appearance="outline">
       <mat-label>Title</mat-label>
-      <input
-        required
-        matInput
-        type="text"
-        formControlName="title"
-        name="title"
-        (input)="onChangeBlog($event)"
-      />
+      <input required matInput type="text" formControlName="title" name="title" (input)="onChangeBlog($event)" />
     </mat-form-field>
 
-    <mat-form-field
-      class="reduce-width"
-      [style.width.px]="500"
-      appearance="outline"
-    >
+    <mat-form-field class="reduce-width" [style.width.px]="500" appearance="outline">
       <mat-label>Link</mat-label>
-      <input
-        required
-        matInput
-        type="text"
-        formControlName="link"
-        name="link"
-        (input)="onChangeBlog($event)"
-      />
+      <input required matInput type="text" formControlName="link" name="link" (input)="onChangeBlog($event)" />
     </mat-form-field>
-    <mat-form-field
-      class="reduce-width"
-      [style.width.px]="500"
-      appearance="outline"
-    >
+    <mat-form-field class="reduce-width" [style.width.px]="500" appearance="outline">
       <mat-label>Note</mat-label>
-      <input
-        required
-        matInput
-        type="text"
-        formControlName="note"
-        name="note"
-        (input)="onChangeBlog($event)"
-      />
+      <input required matInput type="text" formControlName="note" name="note" (input)="onChangeBlog($event)" />
     </mat-form-field>
 
     <div class="svgContainer">
-      <button
-        class="itemButton"
-        [disabled]="isBlogButtonDisabled"
-        mat-raised-button
-        color="primary"
-        (click)="onBlogAdd(true)"
-      >
+      <button class="itemButton" [disabled]="isBlogButtonDisabled" mat-raised-button color="primary"
+        (click)="onBlogAdd(true)">
         Finish
       </button>
 
-      <button
-        class="itemButton"
-        [disabled]="isBlogButtonDisabled"
-        mat-raised-button
-        color="primary"
-        type="button"
-        (click)="onBlogAdd(false)"
-      >
+      <button class="itemButton" [disabled]="isBlogButtonDisabled" mat-raised-button color="primary" type="button"
+        (click)="onBlogAdd(false)">
         Add Another Module
       </button>
 
-      <button
-        class="itemButton"
-        mat-raised-button
-        color="warn"
-        type="button"
-        (click)="onCancel('blog')"
-        (click)="onCancel('youtube')"
-      >
+      <button class="itemButton" mat-raised-button color="warn" type="button" (click)="onCancel('blog')"
+        (click)="onCancel('youtube')">
         Cancel
       </button>
     </div>
   </form>
 </div>
 
+<!-- blog module end -->
+
+
+
+<!-- course module begin -->
 <div class="formContainer">
-  <form
-    [class.cdk-visually-hidden]="!isCourse"
-    class="controlContainer"
-    [formGroup]="courseForm"
-    (ngSubmit)="onCourseAdd(true)"
-  >
-    <mat-form-field
-      class="reduce-width"
-      [style.width.px]="500"
-      appearance="outline"
-    >
+  <form [class.cdk-visually-hidden]="!isCourse" class="controlContainer" [formGroup]="courseForm"
+    (ngSubmit)="onCourseAdd(true)">
+    <mat-form-field class="reduce-width" [style.width.px]="500" appearance="outline">
       <mat-label>Title</mat-label>
-      <input
-        required
-        matInput
-        type="text"
-        formControlName="title"
-        name="title"
-        (input)="onChangeCourse($event)"
-      />
+      <input required matInput type="text" formControlName="title" name="title" (input)="onChangeCourse($event)" />
     </mat-form-field>
 
-    <mat-form-field
-      class="reduce-width"
-      [style.width.px]="500"
-      appearance="outline"
-    >
+    <mat-form-field class="reduce-width" [style.width.px]="500" appearance="outline">
       <mat-label>Link</mat-label>
-      <input
-        required
-        matInput
-        type="text"
-        formControlName="link"
-        name="link"
-        (input)="onChangeCourse($event)"
-      />
+      <input required matInput type="text" formControlName="link" name="link" (input)="onChangeCourse($event)" />
     </mat-form-field>
-    <mat-form-field
-      class="reduce-width"
-      [style.width.px]="500"
-      appearance="outline"
-    >
+    <mat-form-field class="reduce-width" [style.width.px]="500" appearance="outline">
       <mat-label>Note</mat-label>
-      <input
-        required
-        matInput
-        type="text"
-        formControlName="note"
-        name="note"
-        (input)="onChangeCourse($event)"
-      />
+      <input required matInput type="text" formControlName="note" name="note" (input)="onChangeCourse($event)" />
     </mat-form-field>
 
-    <mat-form-field
-      class="reduce-width"
-      [style.width.px]="500"
-      appearance="outline"
-    >
+    <mat-form-field class="reduce-width" [style.width.px]="500" appearance="outline">
       <mat-label>Price ( 0Tk on Free )</mat-label>
-      <input
-        required
-        matInput
-        type="text"
-        formControlName="price"
-        name="price"
-        (input)="onChangeCourse($event)"
-      />
+      <input required matInput type="text" formControlName="price" name="price" (input)="onChangeCourse($event)" />
     </mat-form-field>
 
     <div class="svgContainer">
-      <button
-        class="itemButton"
-        [disabled]="isBlogButtonDisabled"
-        mat-raised-button
-        color="primary"
-        (click)="onCourseAdd(true)"
-      >
+      <button class="itemButton" [disabled]="isBlogButtonDisabled" mat-raised-button color="primary"
+        (click)="onCourseAdd(true)">
         Finish
       </button>
 
-      <button
-        class="itemButton"
-        [disabled]="isBlogButtonDisabled"
-        mat-raised-button
-        color="primary"
-        type="button"
-        (click)="onCourseAdd(false)"
-      >
+      <button class="itemButton" [disabled]="isBlogButtonDisabled" mat-raised-button color="primary" type="button"
+        (click)="onCourseAdd(false)">
         Add Another Module
       </button>
 
-      <button
-        class="itemButton"
-        mat-raised-button
-        color="warn"
-        type="button"
-        (click)="onCancel('course')"
-      >
+      <button class="itemButton" mat-raised-button color="warn" type="button" (click)="onCancel('course')">
         Cancel
       </button>
     </div>
   </form>
 </div>
 
+<!-- course module end -->
+
+
+
+<!-- live module begin -->
 <div class="formContainer">
-  <form
-    [class.cdk-visually-hidden]="!isLive"
-    class="controlContainer"
-    [formGroup]="liveForm"
-    (ngSubmit)="onLiveAdd(true)"
-  >
-    <mat-form-field
-      class="reduce-width"
-      [style.width.px]="500"
-      appearance="outline"
-    >
+  <form [class.cdk-visually-hidden]="!isLive" class="controlContainer" [formGroup]="liveForm"
+    (ngSubmit)="onLiveAdd(true)">
+    <mat-form-field class="reduce-width" [style.width.px]="500" appearance="outline">
       <mat-label>Title</mat-label>
-      <input
-        required
-        matInput
-        type="text"
-        formControlName="title"
-        name="title"
-        (input)="onChangeLive($event)"
-      />
+      <input required matInput type="text" formControlName="title" name="title" (input)="onChangeLive($event)" />
     </mat-form-field>
 
-    <mat-form-field
-      class="reduce-width"
-      [style.width.px]="500"
-      appearance="outline"
-    >
+    <mat-form-field class="reduce-width" [style.width.px]="500" appearance="outline">
       <mat-label>Link</mat-label>
-      <input
-        required
-        matInput
-        type="text"
-        formControlName="link"
-        name="link"
-        (input)="onChangeLive($event)"
-      />
+      <input required matInput type="text" formControlName="link" name="link" (input)="onChangeLive($event)" />
     </mat-form-field>
-    <mat-form-field
-      class="reduce-width"
-      [style.width.px]="500"
-      appearance="outline"
-    >
+    <mat-form-field class="reduce-width" [style.width.px]="500" appearance="outline">
       <mat-label>Note</mat-label>
-      <input
-        required
-        matInput
-        type="text"
-        formControlName="note"
-        name="note"
-        (input)="onChangeLive($event)"
-      />
+      <input required matInput type="text" formControlName="note" name="note" (input)="onChangeLive($event)" />
     </mat-form-field>
 
     <div class="svgContainer">
-      <button
-        class="itemButton"
-        [disabled]="isBlogButtonDisabled"
-        mat-raised-button
-        color="primary"
-        (click)="onLiveAdd(true)"
-      >
+      <button class="itemButton" [disabled]="isBlogButtonDisabled" mat-raised-button color="primary"
+        (click)="onLiveAdd(true)">
         Finish
       </button>
 
-      <button
-        class="itemButton"
-        [disabled]="isBlogButtonDisabled"
-        mat-raised-button
-        color="primary"
-        type="button"
-        (click)="onLiveAdd(false)"
-      >
+      <button class="itemButton" [disabled]="isBlogButtonDisabled" mat-raised-button color="primary" type="button"
+        (click)="onLiveAdd(false)">
         Add Another Module
       </button>
 
-      <button
-        class="itemButton"
-        mat-raised-button
-        color="warn"
-        type="button"
-        (click)="onCancel('live')"
-      >
+      <button class="itemButton" mat-raised-button color="warn" type="button" (click)="onCancel('live')">
         Cancel
       </button>
     </div>
   </form>
 </div>
 
-<div
-  *ngIf="showModules"
-  class="svgContainer animate__animated"
-  [class.animate__zoomInDown]="showModules"
->
-  <img
-    src="./../../../assets/youtube.svg"
-    alt=""
-    class="item"
-    (click)="onSelect('youtube')"
-  />
-  <img
-    src="./../../../assets/blogger.svg"
-    alt=""
-    class="item"
-    (click)="onSelect('blog')"
-  />
-  <img
-    src="./../../../assets/live-broadcast.svg"
-    alt=""
-    class="item"
-    (click)="onSelect('live')"
-  />
-  <img
-    src="./../../../assets/upload.svg"
-    alt=""
-    class="item"
-    (click)="onSelect('upload')"
-  />
-  <img
-    src="./../../../assets/courses.svg"
-    alt=""
-    class="item"
-    (click)="onSelect('course')"
-  />
+<!-- live module end -->
+
+<div *ngIf="showModules" class="svgContainer animate__animated" [class.animate__zoomInDown]="showModules">
+  <img src="./../../../assets/youtube.svg" alt="" class="item" (click)="onSelect('youtube')" />
+  <img src="./../../../assets/blogger.svg" alt="" class="item" (click)="onSelect('blog')" />
+  <img src="./../../../assets/live-broadcast.svg" alt="" class="item" (click)="onSelect('live')" />
+  <img src="./../../../assets/upload.svg" alt="" class="item" (click)="onSelect('upload')" />
+  <img src="./../../../assets/courses.svg" alt="" class="item" (click)="onSelect('course')" />
 </div>

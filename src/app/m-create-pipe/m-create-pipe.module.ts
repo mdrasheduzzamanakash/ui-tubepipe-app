@@ -52,7 +52,7 @@ import { RouterModule } from '@angular/router';
     // material modules end
     RouterModule
   ], exports: [
-    CreatePipeComponent
+    CreatePipeComponent,
   ]
 })
 export class MCreatePipeModule { }
