@@ -1,27 +1,33 @@
 <div class="box">
 
-<div>
-    <div class="example-container">
-        <mat-form-field appearance="fill" [style.width.px]=300>
-          <mat-label>Fill form field</mat-label>
-          <input matInput placeholder="Placeholder">
-          <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
-          <!-- <mat-hint>Hint</mat-hint> -->
-        </mat-form-field>
+
+    <div>
+        <button mat-raised-button color="primary" style="width: 300px; margin-bottom: 10px;"
+            (click)="showGoogleSingRegister()">Try
+            Easy With Google</button>
+        <div style="width: 300px; margin-bottom: 10px;" id="buttonDiv"></div>
+        <div class="example-container">
+            <mat-form-field appearance="fill" [style.width.px]=300>
+                <mat-label>Fill form field</mat-label>
+                <input matInput placeholder="Placeholder">
+                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                <!-- <mat-hint>Hint</mat-hint> -->
+            </mat-form-field>
+        </div>
+        <div class="example-container">
+            <mat-form-field appearance="fill" [style.width.px]=300>
+                <mat-label>Enter your password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <span class="example-spacer"></span>
+        <div class="login-signup">
+            <button mat-raised-button color="primary">Login</button>
+            <!-- <span class="btn-align"></span> -->
+            <button mat-raised-button color="primary">Forgot Password</button>
+        </div>
     </div>
-    <div class="example-container">
-        <mat-form-field appearance="fill" [style.width.px]=300>
-            <mat-label>Enter your password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-        </mat-form-field>
-    </div>
-    <span class="example-spacer"></span>
-    <div class="login-signup">
-        <button mat-raised-button color="primary" >Login</button>
-        <!-- <span class="btn-align"></span> -->
-        <button mat-raised-button color="primary" >Forgot Password</button>
-    </div>
-</div>
