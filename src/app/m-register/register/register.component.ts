@@ -60,7 +60,11 @@ export class RegisterComponent implements OnInit {
     await this.service.LoginWithGoogle(credentialResponse.credential).subscribe(
       (x: any) => {
         // console.log(x);
-        localStorage.setItem('jwt', x.token);
+        localStorage.setItem('email', x.email);
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('name', x.name);
+        localStorage.setItem('email_verified', x.email_verified);
+        this.service.changeLoginStatus(true);
         this._ngZone.run(() => {
           this.router.navigate(['/']);
         })

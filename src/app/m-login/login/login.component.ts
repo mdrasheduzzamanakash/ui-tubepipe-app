@@ -42,20 +42,25 @@ export class LoginComponent implements OnInit {
   }
 
 
-
-
-
   async handleCredentialResponse(credentialResponse: CredentialResponse) {
+    // console.log(credentialResponse);
     await this.service.LoginWithGoogle(credentialResponse.credential).subscribe(
       (x: any) => {
-        debugger;
-        localStorage.setItem("token", x.token);
+        console.log(x);
+        localStorage.setItem('email', x.email);
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('name', x.name);
+        localStorage.setItem('email_verified', x.email_verified);
+        this.service.changeLoginStatus(true);
         this._ngZone.run(() => {
           this.router.navigate(['/']);
         })
       },
       (error: any) => {
         console.log(error);
+        this._ngZone.run(() => {
+          this.router.navigate(['/']);
+        })
       }
     );
   }
