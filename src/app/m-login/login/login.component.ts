@@ -10,8 +10,6 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-
   clientId: string = environment.googleClientID;
   showGoogleSingRegister() {
     //@ts-ignore

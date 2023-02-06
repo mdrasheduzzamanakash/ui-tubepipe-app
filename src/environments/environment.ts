@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiendpoint: 'http://localhost:3000', 
-  googleClientID: 'YOUR_GOOGLE_CLIENT_ID'
+  apiendpoint: 'http://localhost:3000',
+  googleClientID: '610953484359-25oc0fsv6s1m3k5em34siv6slnmq72nf.apps.googleusercontent.com'
 };
 
 /*
