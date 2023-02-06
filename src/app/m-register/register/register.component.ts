@@ -56,9 +56,9 @@ export class RegisterComponent implements OnInit {
 
 
   async handleCredentialResponse(credentialResponse: CredentialResponse) {
+    // console.log(credentialResponse);
     await this.service.LoginWithGoogle(credentialResponse.credential).subscribe(
       (x: any) => {
-        debugger;
         localStorage.setItem("token", x.token);
         this._ngZone.run(() => {
           this.router.navigate(['/']);
