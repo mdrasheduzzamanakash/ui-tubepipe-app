@@ -15,9 +15,10 @@
       <div *ngIf = "logged_in; else elseBlock">
         <button mat-button routerLink="/enrol">Enroll</button>
         <button mat-button routerLink="/create">Create</button>
-        <button mat-button routerLink="/signup">Logout</button>
+        <button mat-button routerLink="/" (click)="logoutHandler()">Logout</button>
       </div>
       <ng-template #elseBlock>
+        <button mat-button routerLink="/enrol">Enroll</button>
         <button mat-button routerLink="/login">Login</button>
         <button mat-button routerLink="/signup">Signup</button>
       </ng-template>

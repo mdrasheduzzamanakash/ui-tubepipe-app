@@ -4,7 +4,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { blog, course, live, pipeModules, youtube } from './module-interface';
 import { pipe } from 'rxjs';
-import { HomeServiceService } from 'src/app/m-main-body/home-service.service';
+import { HomeServiceService } from 'src/app/services/home-service.service';
 
 export interface Tag {
   name: string;
