@@ -59,14 +59,17 @@ export class RegisterComponent implements OnInit {
     // console.log(credentialResponse);
     await this.service.LoginWithGoogle(credentialResponse.credential).subscribe(
       (x: any) => {
-        console.log(x);
-        localStorage.setItem("token", x.jti);
+        // console.log(x);
+        localStorage.setItem('jwt', x.token);
         this._ngZone.run(() => {
           this.router.navigate(['/']);
         })
       },
       (error: any) => {
         console.log(error);
+        this._ngZone.run(() => {
+          this.router.navigate(['/']);
+        })
       }
     );
   }
