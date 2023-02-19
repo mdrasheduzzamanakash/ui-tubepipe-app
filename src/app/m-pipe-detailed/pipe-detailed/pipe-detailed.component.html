@@ -2,8 +2,14 @@
 
     <div class="itemleft">
         <img class="leftImage" src='{{pipeDetails.url}}' alt="">
+        <button *ngIf="!isEnrolled && isLoggedIn" mat-raised-button color="primary"
+            (click)="clickOnEnroll()">Enroll</button>
+        <button *ngIf="isEnrolled && isLoggedIn" mat-raised-button color="primary"
+            (click)="clickOnUnEnroll()">UnEnroll</button>
+        <div *ngIf="!isLoggedIn">Login / Register to Enroll</div>
     </div>
-    <div class="itemRight">
+    <div
+        [ngClass]="{'itemRight': isEnrolled === true && isLoggedIn === true, 'itemRightUnclick' : isEnrolled === false || isLoggedIn === false}">
         <div *ngFor="let module of allModules" class="itemRightModule">
             <div *ngIf="module.category=='youtube'" class="youtubeModule">
                 <div class="itemYoutubeModuleLeft" (click)="onClickYoutube(module.link)">

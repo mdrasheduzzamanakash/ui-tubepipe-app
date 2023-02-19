@@ -535,8 +535,8 @@ export class CreatePipeComponent implements OnInit, OnDestroy {
     }
   }
 
-  handleUpload(upload: any, isFinish : boolean = false) {
-    
+  handleUpload(upload: any, isFinish: boolean = false) {
+
     this.fileUploadService.addUser(
       //@ts-ignore
       this.uploadForm.value.name,
@@ -563,7 +563,7 @@ export class CreatePipeComponent implements OnInit, OnDestroy {
           this.percentDone = false;
           upload.download_link = event.body.userCreated.download_link;
           this.pipeModules.upload.push(upload);
-          if(isFinish) this.onFinish(upload.pipe_id);
+          if (isFinish) this.onFinish(upload.pipe_id);
           return;
       }
     })
@@ -587,7 +587,7 @@ export class CreatePipeComponent implements OnInit, OnDestroy {
       author: this.localStorageUserInfo.email,
     };
 
-    console.log("final pipe ----- > " , finalPipe)
+    console.log("final pipe ----- > ", finalPipe)
     this.api.postPipe(finalPipe).subscribe(data => {
       this.isYoutube = false;
       this.isBlog = false;

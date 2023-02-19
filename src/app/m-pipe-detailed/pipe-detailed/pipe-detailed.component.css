@@ -1,7 +1,6 @@
 .container {
     display: flex;
     flex-direction: row;
-
 }
 
 .itemleft {
@@ -14,18 +13,30 @@
     max-width: 300px;
     min-height: 100px;
     max-height: 200px;
+    flex-direction: column;
+    padding: 10px;
 }
 
 .itemRight {
     flex: 0.8;
     padding: 10px;
+    border-radius: 20px;
+    background-color: rgb(203, 255, 202);
 }
 
+.itemRightUnclick {
+    flex: 0.8;
+    padding: 10px;
+    pointer-events: none;
+    background-color: rgb(255, 236, 236);
+    border-radius: 20px;
+}
 
 .leftImage {
     width: 107px;
     height: 87px;
     border-radius: 23px;
+    margin-bottom: 10px;
 }
 
 .itemRightModule {

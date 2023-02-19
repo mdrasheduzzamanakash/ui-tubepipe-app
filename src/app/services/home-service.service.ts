@@ -7,13 +7,12 @@ import { SinglePipe } from '../m-main-body/Pipe.interface';
   providedIn: 'root'
 })
 export class HomeServiceService {
+  
   constructor(private http: HttpClient,) { }
 
   getPipes() {
     return this.http.get<any>(environment.apiendpoint + '/api/pipes');
   }
-
-
 
   postPipe(param: any) {
     return this.http.post<SinglePipe>(environment.apiendpoint + '/api/pipes', param);
@@ -29,6 +28,20 @@ export class HomeServiceService {
 
   getSinglePipe(id: string) {
     return this.http.get<SinglePipe>(environment.apiendpoint + `/api/pipes/${id}`);
+  }
+
+  addToEnrolled(id: string) {
+    let email = localStorage.getItem('email');
+    let pipeId = id;
+    return this.http.post(environment.apiendpoint + `/api/pipes/enrolled`, {email, pipeId});
+  }
+
+  removeFromEnrolled(_id: any) {
+    return this.http.delete(environment.apiendpoint + `/api/pipes/enrolled/${_id}`);
+  }
+
+  getAllEnrolled() {
+    return this.http.get<any[]>(environment.apiendpoint + `/api/pipes/enrolled`);
   }
 
 }

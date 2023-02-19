@@ -27,6 +27,7 @@ export class PipeDetailedComponent implements OnInit, OnDestroy {
   sub: any;
   httpSub: any;
   authSub: any;
+  loggedInSub : any;
 
   constructor(
     private route: ActivatedRoute,
@@ -68,13 +69,24 @@ export class PipeDetailedComponent implements OnInit, OnDestroy {
       blog: this.blogModules,
       live: this.liveModules,
       course: this.courseModules,
+      upload: this.uplaodModules
     };
-    this.allModules = [
-      ...this.youtubeModules,
-      ...this.blogModules,
-      ...this.liveModules,
-      ...this.courseModules,
-    ];
+    this.allModules = [];
+    for(let i = 0;i < this.pipeDetails.modules.youtube.length;i++) {
+      this.allModules.push(this.pipeDetails.modules.youtube[i]);
+    }
+    for(let i = 0;i < this.pipeDetails.modules.blog.length;i++) {
+      this.allModules.push(this.pipeDetails.modules.blog[i]);
+    }
+    for(let i = 0;i < this.pipeDetails.modules.live.length;i++) {
+      this.allModules.push(this.pipeDetails.modules.live[i]);
+    }
+    for(let i = 0;i < this.pipeDetails.modules.course.length;i++) {
+      this.allModules.push(this.pipeDetails.modules.course[i]);
+    }
+    for(let i = 0;i < this.pipeDetails.modules.upload.length;i++) {
+      this.allModules.push(this.pipeDetails.modules.upload[i]);
+    }
     sortAllModules(this.allModules);
     this.httpSub = this.homeService.updatePipe(this.pipeDetails._id, this.pipeDetails).subscribe((data) => {
       console.log(data);
@@ -86,12 +98,29 @@ export class PipeDetailedComponent implements OnInit, OnDestroy {
   }
 
   localStorageUserInfo : any;
+  isEnrolled : boolean = false;
+  enrolledPipeIdInMongo: string = '';
+  isLoggedIn : boolean = false;
+
+  clickOnEnroll() {
+    this.homeService.addToEnrolled(this.pipeDetails._id).subscribe((data) => {
+      console.log(data);
+      this.ngOnInit();
+    });
+  }
+
+  clickOnUnEnroll() {
+    this.homeService.removeFromEnrolled(this.enrolledPipeIdInMongo).subscribe((data) => {
+      console.log(data);
+      this.ngOnInit();
+    });
+  }
 
   ngOnInit(): void {
     this.authSub = this.authService.userLocalStorageInfoObservable.subscribe((data) => {
       this.localStorageUserInfo = data;
     });
-    
+    this.loggedInSub = this.authService.isLoggedIn.subscribe(x => this.isLoggedIn = x);
     this.sub = this.route.params.subscribe((params) => {
       this.id = params['id'];
     });
@@ -113,6 +142,17 @@ export class PipeDetailedComponent implements OnInit, OnDestroy {
         ];
         // console.log(this.allModules);
         sortAllModules(this.allModules);
+        this.isEnrolled = false;
+        this.homeService.getAllEnrolled().subscribe((data) => {
+          let enrolledPipes = data;
+          for(let i = 0; i < enrolledPipes.length; i++) {
+            if(enrolledPipes[i].pipeId === this.pipeDetails._id && enrolledPipes[i].email === this.localStorageUserInfo.email) {
+              this.isEnrolled = true;
+              this.enrolledPipeIdInMongo = enrolledPipes[i]._id;
+              break; 
+            }
+          }
+        });
       });
   }
 
@@ -120,6 +160,7 @@ export class PipeDetailedComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
     this.httpSub.unsubscribe();
     this.authSub.unsubscribe();
+    this.loggedInSub.unsubscribe();
   }
 }
 
