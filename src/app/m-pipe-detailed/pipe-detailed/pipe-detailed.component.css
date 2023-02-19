@@ -21,14 +21,14 @@
     flex: 0.8;
     padding: 10px;
     border-radius: 20px;
-    background-color: rgb(203, 255, 202);
+    /* background-color: rgb(203, 255, 202); */
 }
 
 .itemRightUnclick {
     flex: 0.8;
     padding: 10px;
     pointer-events: none;
-    background-color: rgb(255, 236, 236);
+    /* background-color: rgb(255, 236, 236); */
     border-radius: 20px;
 }
 

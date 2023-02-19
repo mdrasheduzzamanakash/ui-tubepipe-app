@@ -15,6 +15,8 @@ import { HomeServiceService } from 'src/app/services/home-service.service';
   styleUrls: ['./pipe-detailed.component.css'],
 })
 export class PipeDetailedComponent implements OnInit, OnDestroy {
+
+
   id: string = '';
   pipeDetails: any;
   youtubeModules: youtube[] = [];
@@ -27,13 +29,33 @@ export class PipeDetailedComponent implements OnInit, OnDestroy {
   sub: any;
   httpSub: any;
   authSub: any;
-  loggedInSub : any;
+  loggedInSub: any;
 
   constructor(
     private route: ActivatedRoute,
-    private homeService: HomeServiceService, 
-    private authService : AuthService
+    private homeService: HomeServiceService,
+    private authService: AuthService
   ) { }
+
+  addModAsCompleted(module: any) {
+    // console.log('----')
+    let mod = {
+      email: this.localStorageUserInfo.email,
+      m_id: module.m_id,
+      category: module.category,
+      pipeId: this.pipeDetails._id
+    }
+    this.homeService.addModAsCompleted(mod).subscribe((data) => {
+      // console.log(data);
+      this.ngOnInit();
+    });
+  }
+
+  addToUncompleted(module: any) {
+    this.homeService.deleteCompletedModule(module.mongo_id).subscribe((data) => {
+      this.ngOnInit();
+    });
+  }
 
   onClickYoutube(link: string) {
     window.open(link, '_blank');
@@ -61,7 +83,7 @@ export class PipeDetailedComponent implements OnInit, OnDestroy {
       this.liveModules = this.liveModules.filter((item) => item !== module);
     } else if (module.category === 'course') {
       this.courseModules = this.courseModules.filter((item) => item !== module);
-    } else if(module.category === 'upload') {
+    } else if (module.category === 'upload') {
       this.courseModules = this.courseModules.filter((item) => item !== module);
     }
     this.pipeDetails.modules = {
@@ -72,24 +94,25 @@ export class PipeDetailedComponent implements OnInit, OnDestroy {
       upload: this.uplaodModules
     };
     this.allModules = [];
-    for(let i = 0;i < this.pipeDetails.modules.youtube.length;i++) {
+    for (let i = 0; i < this.pipeDetails.modules.youtube.length; i++) {
       this.allModules.push(this.pipeDetails.modules.youtube[i]);
     }
-    for(let i = 0;i < this.pipeDetails.modules.blog.length;i++) {
+    for (let i = 0; i < this.pipeDetails.modules.blog.length; i++) {
       this.allModules.push(this.pipeDetails.modules.blog[i]);
     }
-    for(let i = 0;i < this.pipeDetails.modules.live.length;i++) {
+    for (let i = 0; i < this.pipeDetails.modules.live.length; i++) {
       this.allModules.push(this.pipeDetails.modules.live[i]);
     }
-    for(let i = 0;i < this.pipeDetails.modules.course.length;i++) {
+    for (let i = 0; i < this.pipeDetails.modules.course.length; i++) {
       this.allModules.push(this.pipeDetails.modules.course[i]);
     }
-    for(let i = 0;i < this.pipeDetails.modules.upload.length;i++) {
+    for (let i = 0; i < this.pipeDetails.modules.upload.length; i++) {
       this.allModules.push(this.pipeDetails.modules.upload[i]);
     }
     sortAllModules(this.allModules);
     this.httpSub = this.homeService.updatePipe(this.pipeDetails._id, this.pipeDetails).subscribe((data) => {
-      console.log(data);
+      // console.log(data);
+      this.ngOnInit();
     });
   }
 
@@ -97,10 +120,10 @@ export class PipeDetailedComponent implements OnInit, OnDestroy {
     throw new Error('Method not implemented.');
   }
 
-  localStorageUserInfo : any;
-  isEnrolled : boolean = false;
+  localStorageUserInfo: any;
+  isEnrolled: boolean = false;
   enrolledPipeIdInMongo: string = '';
-  isLoggedIn : boolean = false;
+  isLoggedIn: boolean = false;
 
   clickOnEnroll() {
     this.homeService.addToEnrolled(this.pipeDetails._id).subscribe((data) => {
@@ -142,14 +165,29 @@ export class PipeDetailedComponent implements OnInit, OnDestroy {
         ];
         // console.log(this.allModules);
         sortAllModules(this.allModules);
+
+        this.homeService.getCompletedModules().subscribe((data) => {
+          let completedModules = data;
+          for (let i = 0; i < completedModules.length; i++) {
+            if (completedModules[i].pipeId === this.pipeDetails._id && completedModules[i].email === this.localStorageUserInfo.email) {
+              for (let j = 0; j < this.allModules.length; j++) {
+                if (completedModules[i].m_id === this.allModules[j].m_id) {
+                  this.allModules[j].isCompleted = true;
+                  this.allModules[j].mongo_id = completedModules[i]._id;
+                }
+              }
+            }
+          }
+        });
+
         this.isEnrolled = false;
         this.homeService.getAllEnrolled().subscribe((data) => {
           let enrolledPipes = data;
-          for(let i = 0; i < enrolledPipes.length; i++) {
-            if(enrolledPipes[i].pipeId === this.pipeDetails._id && enrolledPipes[i].email === this.localStorageUserInfo.email) {
+          for (let i = 0; i < enrolledPipes.length; i++) {
+            if (enrolledPipes[i].pipeId === this.pipeDetails._id && enrolledPipes[i].email === this.localStorageUserInfo.email) {
               this.isEnrolled = true;
               this.enrolledPipeIdInMongo = enrolledPipes[i]._id;
-              break; 
+              break;
             }
           }
         });

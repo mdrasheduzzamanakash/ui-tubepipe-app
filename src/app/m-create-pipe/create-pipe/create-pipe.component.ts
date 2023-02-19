@@ -257,7 +257,10 @@ export class CreatePipeComponent implements OnInit, OnDestroy {
       rangeStart: +this.youtubeForm.get('rangeStart')?.value!,
       rangeEnd: +this.youtubeForm.get('rangeEnd')?.value!,
       sequence: 0,
-      category: 'youtube'
+      category: 'youtube',
+      m_id: generateUniqueIdForModule(),
+      isCompleted: false,
+      mongo_id: '',
     };
     this.pipeModules.youtube.push(youtube);
     if (isFinished) {
@@ -318,7 +321,10 @@ export class CreatePipeComponent implements OnInit, OnDestroy {
       link: this.blogForm.get('link')?.value!,
       note: this.blogForm.get('note')?.value!,
       sequence: 0,
-      category: 'blog'
+      category: 'blog',
+      m_id: generateUniqueIdForModule(),
+      isCompleted: false,
+      mongo_id: '',
     };
     this.pipeModules.blog.push(blog);
     if (isFinished) {
@@ -366,7 +372,10 @@ export class CreatePipeComponent implements OnInit, OnDestroy {
       isPaid: this.courseForm.get('isPaid')?.value! == 'true' ? true : false,
       price: +this.courseForm.get('price')?.value!,
       sequence: 0,
-      category: 'course'
+      category: 'course',
+      m_id: generateUniqueIdForModule(),
+      isCompleted: false,
+      mongo_id: '',
     };
 
     this.pipeModules.course.push(course);
@@ -429,7 +438,10 @@ export class CreatePipeComponent implements OnInit, OnDestroy {
       link: this.liveForm.get('link')?.value!,
       note: this.liveForm.get('note')?.value!,
       sequence: 0,
-      category: 'live'
+      category: 'live',
+      m_id: generateUniqueIdForModule(),
+      isCompleted: false,
+      mongo_id: '',
     };
     this.pipeModules.live.push(live);
     if (isFinished) {
@@ -483,6 +495,7 @@ export class CreatePipeComponent implements OnInit, OnDestroy {
       sequence: 0,
       category: 'upload',
       download_link: '',
+      m_id: generateUniqueIdForModule(),
     };
     if (isFinished) {
       this.handleUpload(upload, true);
@@ -620,3 +633,10 @@ function generateUniqueId(): string {
   return id;
 }
 
+function generateUniqueIdForModule(): string {
+  let id = '';
+  for (let i = 0; i < 10; i++) {
+    id += Math.floor(Math.random() * 10);
+  }
+  return id;
+}

@@ -8,6 +8,7 @@ import { SinglePipe } from '../m-main-body/Pipe.interface';
 })
 export class HomeServiceService {
   
+  
   constructor(private http: HttpClient,) { }
 
   getPipes() {
@@ -42,6 +43,18 @@ export class HomeServiceService {
 
   getAllEnrolled() {
     return this.http.get<any[]>(environment.apiendpoint + `/api/pipes/enrolled`);
+  }
+
+  addModAsCompleted(mod: { email: any; m_id: any; category: any; pipeId: any; }) {
+    return this.http.post(environment.apiendpoint + `/api/pipes/module`, mod);
+  }
+
+  getCompletedModules() {
+    return this.http.get<any[]>(environment.apiendpoint + `/api/pipes/module`);
+  }
+
+  deleteCompletedModule(_id: any) {
+    return this.http.delete(environment.apiendpoint + `/api/pipes/module/${_id}`);
   }
 
 }

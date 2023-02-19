@@ -6,6 +6,9 @@ export interface youtube {
     rangeEnd: number;
     sequence: number;
     category: string;
+    m_id: string;
+    isCompleted: boolean;
+    mongo_id: string;
 }
 
 
@@ -15,6 +18,9 @@ export interface blog {
     note: string;
     sequence: number;
     category: string;
+    m_id: string;
+    isCompleted: boolean;
+    mongo_id: string;
 }
 
 export interface course {
@@ -25,6 +31,9 @@ export interface course {
     price: number;
     sequence: number;
     category: string;
+    m_id: string;
+    isCompleted: boolean;
+    mongo_id: string;
 }
 
 export interface live {
@@ -33,6 +42,9 @@ export interface live {
     note: string;
     sequence: number;
     category: string;
+    m_id: string;
+    isCompleted: boolean;
+    mongo_id: string;
 }
 
 export interface pipeModules {

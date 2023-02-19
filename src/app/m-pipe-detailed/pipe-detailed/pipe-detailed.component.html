@@ -4,7 +4,7 @@
         <img class="leftImage" src='{{pipeDetails.url}}' alt="">
         <button *ngIf="!isEnrolled && isLoggedIn" mat-raised-button color="primary"
             (click)="clickOnEnroll()">Enroll</button>
-        <button *ngIf="isEnrolled && isLoggedIn" mat-raised-button color="primary"
+        <button *ngIf="isEnrolled && isLoggedIn" mat-raised-button color="warn"
             (click)="clickOnUnEnroll()">UnEnroll</button>
         <div *ngIf="!isLoggedIn">Login / Register to Enroll</div>
     </div>
@@ -12,6 +12,7 @@
         [ngClass]="{'itemRight': isEnrolled === true && isLoggedIn === true, 'itemRightUnclick' : isEnrolled === false || isLoggedIn === false}">
         <div *ngFor="let module of allModules" class="itemRightModule">
             <div *ngIf="module.category=='youtube'" class="youtubeModule">
+
                 <div class="itemYoutubeModuleLeft" (click)="onClickYoutube(module.link)">
 
                     <div class="itemYoutubeModuleLeftHeader">
@@ -35,7 +36,10 @@
                 <button *ngIf="pipeDetails.author === localStorageUserInfo.email" mat-button color="warn"
                     (click)="deleteClick(module)"><mat-icon>delete</mat-icon></button>
                 <div class="itemYoutubeModuleRight">
-                    <button mat-button color="primary">Add module as completed</button>
+                    <button *ngIf="!module.isCompleted" mat-button color="primary" (click)="addModAsCompleted(module)">Add module as completed</button>
+                    <button *ngIf="module.isCompleted" mat-button color="primary" (click)="addToUncompleted(module)">Completed
+                        <mat-icon color="primary">done_outline</mat-icon>
+                    </button>
                 </div>
             </div>
 
@@ -65,7 +69,10 @@
                 <button *ngIf="pipeDetails.author === localStorageUserInfo.email" mat-button color="warn"
                     (click)="deleteClick(module)"><mat-icon>delete</mat-icon></button>
                 <div class="itemYoutubeModuleRight">
-                    <button mat-button color="primary">Add module as completed</button>
+                    <button *ngIf="!module.isCompleted" mat-button color="primary" (click)="addModAsCompleted(module)">Add module as completed</button>
+                    <button *ngIf="module.isCompleted" mat-button color="primary" (click)="addToUncompleted(module)">Completed
+                        <mat-icon color="primary">done_outline</mat-icon>
+                    </button>
                 </div>
             </div>
 
@@ -93,7 +100,10 @@
                     (click)="deleteClick(module)"><mat-icon>delete</mat-icon></button>
 
                 <div class="itemYoutubeModuleRight">
-                    <button mat-button color="primary">Add module as completed</button>
+                    <button *ngIf="!module.isCompleted" mat-button color="primary" (click)="addModAsCompleted(module)">Add module as completed</button>
+                    <button *ngIf="module.isCompleted" mat-button color="primary" (click)="addToUncompleted(module)">Completed
+                        <mat-icon color="primary" >done_outline</mat-icon>
+                    </button>
                 </div>
             </div>
 
@@ -122,7 +132,10 @@
                     (click)="deleteClick(module)"><mat-icon>delete</mat-icon></button>
 
                 <div class="itemYoutubeModuleRight">
-                    <button mat-button color="primary">Add module as completed</button>
+                    <button *ngIf="!module.isCompleted" mat-button color="primary" (click)="addModAsCompleted(module)">Add module as completed</button>
+                    <button *ngIf="module.isCompleted" mat-button color="primary" (click)="addToUncompleted(module)">Completed
+                        <mat-icon color="primary">done_outline</mat-icon>
+                    </button>
                 </div>
             </div>
 
@@ -152,7 +165,10 @@
                     (click)="deleteClick(module)"><mat-icon>delete</mat-icon></button>
 
                 <div class="itemYoutubeModuleRight">
-                    <button mat-button color="primary">Add module as completed</button>
+                    <button *ngIf="!module.isCompleted" mat-button color="primary" (click)="addModAsCompleted(module)">Add module as completed</button>
+                    <button *ngIf="module.isCompleted" mat-button color="primary" (click)="addToUncompleted(module)">Completed
+                        <mat-icon color="primary">done_outline</mat-icon>
+                    </button>
                 </div>
 
             </div>
