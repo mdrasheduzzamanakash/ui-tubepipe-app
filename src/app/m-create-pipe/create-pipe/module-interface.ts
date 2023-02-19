@@ -40,4 +40,5 @@ export interface pipeModules {
     blog: blog[];
     course: course[];
     live: live[];
+    upload: any[];
 }

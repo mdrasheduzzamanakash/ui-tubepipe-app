@@ -16,6 +16,13 @@ export class AuthService {
     this.isLoggedInObservable.next(status);
   }
 
+  private userLocalStorageInfo = new BehaviorSubject(null);
+  userLocalStorageInfoObservable = this.userLocalStorageInfo.asObservable();
+
+  changeUserLocalStorageInfo(info: any) {
+    this.userLocalStorageInfo.next(info);
+  }
+
   constructor(private http: HttpClient) { }
 
   LoginWithGoogle(credential: string) {

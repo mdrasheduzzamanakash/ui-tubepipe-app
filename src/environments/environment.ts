@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   apiendpoint: 'http://localhost:4000',
-  googleClientID: '610953484359-25oc0fsv6s1m3k5em34siv6slnmq72nf.apps.googleusercontent.com'
+  googleClientID: '610953484359-25oc0fsv6s1m3k5em34siv6slnmq72nf.apps.googleusercontent.com',
+  compressApiEndpoint: 'http://localhost:4010',
 };
 
 /*

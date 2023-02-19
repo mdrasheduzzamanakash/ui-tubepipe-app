@@ -17,15 +17,21 @@ export class NavbarComponent implements OnInit {
   logged_in = false;
   subscription: Subscription = new Subscription();
   constructor(private auth: AuthService) { }
+  profile_pic : string = "";
 
   ngOnInit(): void {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     if (isLoggedIn === 'true') {
       this.auth.changeLoginStatus(true);
+      const profile_pic = localStorage.getItem('profile_pic');
+      const name = localStorage.getItem('name');
+      const email = localStorage.getItem('email');
+      this.auth.changeUserLocalStorageInfo({profile_pic, name, email});
     } else {
       this.auth.changeLoginStatus(false);
     }
     this.subscription = this.auth.isLoggedIn.subscribe(x => this.logged_in = x);
+    this.profile_pic = localStorage.getItem('profile_pic') || "";
   }
 
   ngOnDestroy(): void {

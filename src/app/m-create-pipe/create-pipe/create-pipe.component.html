@@ -200,8 +200,7 @@
     </mat-form-field>
 
     <div class="svgContainer">
-      <button class="itemButton" [disabled]="isBlogButtonDisabled" mat-raised-button color="primary"
-        (click)="onCourseAdd(true)">
+      <button class="itemButton" [disabled]="isBlogButtonDisabled" mat-raised-button color="primary">
         Finish
       </button>
 
@@ -240,8 +239,7 @@
     </mat-form-field>
 
     <div class="svgContainer">
-      <button class="itemButton" [disabled]="isBlogButtonDisabled" mat-raised-button color="primary"
-        (click)="onLiveAdd(true)">
+      <button class="itemButton" [disabled]="isBlogButtonDisabled" mat-raised-button color="primary">
         Finish
       </button>
 
@@ -257,7 +255,61 @@
   </form>
 </div>
 
-<!-- live module end -->
+
+
+<div class="formContainer" [hidden]="!isUpload">
+  <form class="controlContainer" [formGroup]="uploadForm" (ngSubmit)="onUploadAdd(true)">
+
+    <mat-form-field class="reduce-width" [style.width.px]="500" appearance="outline">
+      <mat-label>Title</mat-label>
+      <input required matInput type="text" formControlName="title" name="title" (input)="onChangeUpload($event)" />
+    </mat-form-field>
+
+    <mat-form-field class="reduce-width" [style.width.px]="500" appearance="outline">
+      <mat-label>Link</mat-label>
+      <input required matInput type="text" formControlName="link" name="link" (input)="onChangeUpload($event)" />
+    </mat-form-field>
+    <mat-form-field class="reduce-width" [style.width.px]="500" appearance="outline">
+      <mat-label>Note</mat-label>
+      <input required matInput type="text" formControlName="note" name="note" (input)="onChangeUpload($event)" />
+    </mat-form-field>
+
+    <mat-form-field class="reduce-width" [style.width.px]="500" appearance="outline">
+      <mat-label>Name</mat-label>
+      <input required matInput type="text" formControlName="name" name="note" />
+    </mat-form-field>
+
+    <div class="form-group">
+      <input type="file" (change)="uploadFile($event)">
+    </div>
+
+    <!-- <button class="btn btn-primary" type="submit">Submit</button> -->
+    <br>
+    <br>
+    <div class="svgContainer">
+      <button class="itemButton" [disabled]="isUploadButtonDisabled" mat-raised-button color="primary">
+        Finish
+      </button>
+
+      <button class="itemButton" [disabled]="isUploadButtonDisabled" mat-raised-button color="primary" type="button"
+        (click)="onUploadAdd(false)">
+        Add Another Module
+      </button>
+      <button class="itemButton" mat-raised-button color="warn" type="button" (click)="onCancel('upload')">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
+
+
+
+
+
+
+
+
+
 
 <div *ngIf="showModules" class="svgContainer animate__animated" [class.animate__zoomInDown]="showModules">
   <img src="./../../../assets/youtube.svg" alt="" class="item" (click)="onSelect('youtube')" />

@@ -64,6 +64,7 @@ export class RegisterComponent implements OnInit {
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('name', x.name);
         localStorage.setItem('email_verified', x.email_verified);
+        localStorage.setItem('profile_pic', x.picture);
         this.service.changeLoginStatus(true);
         this._ngZone.run(() => {
           this.router.navigate(['/']);

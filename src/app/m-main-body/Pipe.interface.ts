@@ -1,5 +1,6 @@
 export interface SinglePipe {
-    id: number;
+    _id: string;
+    id: string;
     title: string;
     author: string;
     description: string;
@@ -12,5 +13,5 @@ export interface SinglePipe {
     module_ids: number[];
     impactFactor: number;
     isHidden: boolean;
-    isDeleted: boolean;    
+    isDeleted: boolean;
 }

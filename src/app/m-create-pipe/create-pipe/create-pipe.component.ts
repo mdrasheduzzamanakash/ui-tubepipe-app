@@ -1,10 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { blog, course, live, pipeModules, youtube } from './module-interface';
 import { pipe } from 'rxjs';
 import { HomeServiceService } from 'src/app/services/home-service.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { RouterModule } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { HttpClient, HttpEvent, HttpEventType } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { FileUploadService } from 'src/app/services/file-uploading.service';
 
 export interface Tag {
   name: string;
@@ -15,9 +21,14 @@ export interface Tag {
   templateUrl: './create-pipe.component.html',
   styleUrls: ['./create-pipe.component.css'],
 })
-export class CreatePipeComponent implements OnInit {
+export class CreatePipeComponent implements OnInit, OnDestroy {
+
   formGroup!: FormGroup;
-  constructor(private fb: FormBuilder, private api: HomeServiceService) { }
+  authSub: any;
+  constructor(private fileUploadService: FileUploadService, private router: Router, private authService: AuthService, private fb: FormBuilder, private api: HomeServiceService, private http: HttpClient) { }
+  ngOnDestroy(): void {
+    this.authSub.unsubscribe();
+  }
 
   valid = {
     title: false,
@@ -78,7 +89,17 @@ export class CreatePipeComponent implements OnInit {
     }
   }
 
+  localStorageUserInfo: any;
+  uniquePipeId: string = '';
+
   ngOnInit(): void {
+
+
+    this.authSub = this.authService.userLocalStorageInfoObservable.subscribe((data) => {
+      this.localStorageUserInfo = data;
+      // console.log(this.localStorageUserInfo);
+    });
+
     this.formGroup = this.fb.group({
       id: new FormControl(''),
       title: new FormControl(''),
@@ -95,6 +116,8 @@ export class CreatePipeComponent implements OnInit {
       isHidden: new FormControl(''),
       isDeleted: new FormControl(''),
     });
+
+    this.uniquePipeId = generateUniqueId();
   }
 
 
@@ -104,7 +127,7 @@ export class CreatePipeComponent implements OnInit {
 
   dateCheck() {
     this.valid.date = this.formGroup.get('date')?.value != null;
-    console.log(this.valid);
+    // console.log(this.valid);
     if (
       this.valid.title &&
       this.valid.description &&
@@ -136,7 +159,7 @@ export class CreatePipeComponent implements OnInit {
     } else {
       this.buttonDisabled = true;
     }
-    console.log(this.valid);
+    // console.log(this.valid);
   }
 
   onPipeCreate() {
@@ -153,6 +176,7 @@ export class CreatePipeComponent implements OnInit {
   isBlog: boolean = false;
   isCourse: boolean = false;
   isLive: boolean = false;
+  isUpload: boolean = false;
   showFinish: boolean = false;
   introFormHidden: boolean = false;
 
@@ -160,13 +184,35 @@ export class CreatePipeComponent implements OnInit {
     this.showModules = false;
     this.introFormHidden = true;
     if (param == 'youtube') {
+      this.isBlog = false;
+      this.isCourse = false;
+      this.isLive = false;
       this.isYoutube = true;
+      this.isUpload = false;
     } else if (param == 'blog') {
       this.isBlog = true;
+      this.isCourse = false;
+      this.isLive = false;
+      this.isYoutube = false;
+      this.isUpload = false;
     } else if (param == 'course') {
       this.isCourse = true;
+      this.isBlog = false;
+      this.isLive = false;
+      this.isUpload = false;
+      this.isYoutube = false;
     } else if (param == 'live') {
       this.isLive = true;
+      this.isBlog = false;
+      this.isCourse = false;
+      this.isUpload = false;
+      this.isYoutube = false;
+    } else if (param == 'upload') {
+      this.isUpload = true;
+      this.isBlog = false;
+      this.isCourse = false;
+      this.isLive = false;
+      this.isYoutube = false;
     }
   }
 
@@ -181,6 +227,8 @@ export class CreatePipeComponent implements OnInit {
       this.isCourse = false;
     } else if (param == 'live') {
       this.isLive = false;
+    } else if (param == 'upload') {
+      this.isUpload = false;
     }
   }
 
@@ -189,6 +237,7 @@ export class CreatePipeComponent implements OnInit {
     blog: [],
     course: [],
     live: [],
+    upload: [],
   };
 
   // for youtube
@@ -213,6 +262,8 @@ export class CreatePipeComponent implements OnInit {
     this.pipeModules.youtube.push(youtube);
     if (isFinished) {
       this.onFinish();
+    } else {
+      this.showModules = true;
     }
   }
 
@@ -270,7 +321,11 @@ export class CreatePipeComponent implements OnInit {
       category: 'blog'
     };
     this.pipeModules.blog.push(blog);
-    console.log(this.pipeModules);
+    if (isFinished) {
+      this.onFinish();
+    } else {
+      this.showModules = true;
+    }
   }
 
   validBlog = {
@@ -315,7 +370,11 @@ export class CreatePipeComponent implements OnInit {
     };
 
     this.pipeModules.course.push(course);
-    console.log(this.pipeModules);
+    if (isFinished) {
+      this.onFinish();
+    } else {
+      this.showModules = true;
+    }
   }
 
   validCourse = {
@@ -373,7 +432,11 @@ export class CreatePipeComponent implements OnInit {
       category: 'live'
     };
     this.pipeModules.live.push(live);
-    console.log(this.pipeModules);
+    if (isFinished) {
+      this.onFinish();
+    } else {
+      this.showModules = true;
+    }
   }
 
   validLive = {
@@ -398,28 +461,162 @@ export class CreatePipeComponent implements OnInit {
     }
   }
 
-  onFinish() {
+
+
+  // for upload
+
+  uploadForm = new FormGroup({
+    title: new FormControl('',),
+    link: new FormControl('',),
+    note: new FormControl('',),
+    name: new FormControl('',),
+    avatar: new FormControl(null),
+  });
+
+  onUploadAdd(isFinished: boolean) {
+    let upload: any = {
+      title: this.uploadForm.get('title')?.value!,
+      link: this.uploadForm.get('link')?.value!,
+      note: this.uploadForm.get('note')?.value!,
+      name: this.uploadForm.get('name')?.value!,
+      pipe_id: this.uniquePipeId,
+      sequence: 0,
+      category: 'upload',
+      download_link: '',
+    };
+    if (isFinished) {
+      this.handleUpload(upload, true);
+    } else {
+      this.handleUpload(upload, false);
+      this.showModules = true;
+    }
+  }
+  preview: string = '';
+
+  percentDone: any = 0;
+  uploadFile(event: any) {
+    //@ts-ignore
+    const file = (event.target as HTMLInputElement).files[0];
+
+    this.uploadForm.patchValue({
+      //@ts-ignore
+      avatar: file
+    });
+    //@ts-ignore
+    this.uploadForm.get('avatar').updateValueAndValidity()
+    // File Preview
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.preview = reader.result as string;
+    }
+    reader.readAsDataURL(file)
+  }
+
+  validUpload = {
+    title: false,
+    link: false,
+    note: false,
+  };
+
+  isUploadButtonDisabled: boolean = true;
+  onChangeUpload(event: Event) {
+    const name: string = (event.target as HTMLInputElement).name;
+    // console.log('changing')
+    if (name == 'title') {
+      this.validUpload.title =
+        (event.target as HTMLInputElement).value.length > 0;
+    } else if (name == 'link') {
+      this.validUpload.link = (event.target as HTMLInputElement).value.length > 0;
+    } else if (name == 'note') {
+      this.validUpload.note = (event.target as HTMLInputElement).value.length > 0;
+    }
+    if (this.validUpload.title && this.validUpload.link && this.validUpload.note) {
+      this.isUploadButtonDisabled = false;
+    }
+  }
+
+  handleUpload(upload: any, isFinish : boolean = false) {
+    
+    this.fileUploadService.addUser(
+      //@ts-ignore
+      this.uploadForm.value.name,
+      this.uploadForm.value.avatar,
+      this.uploadForm.value.title,
+      this.uploadForm.value.link,
+      this.uploadForm.value.note,
+      this.uniquePipeId
+    ).subscribe((event: HttpEvent<any>) => {
+      switch (event.type) {
+        case HttpEventType.Sent:
+          // console.log('Request has been made!');
+          break;
+        case HttpEventType.ResponseHeader:
+          // console.log('Response header has been received!');
+          break;
+        case HttpEventType.UploadProgress:
+          //@ts-ignore
+          this.percentDone = Math.round(event.loaded / event.total * 100);
+          console.log(`Uploaded! ${this.percentDone}%`);
+          break;
+        case HttpEventType.Response:
+          console.log('User successfully created!', event.body);
+          this.percentDone = false;
+          upload.download_link = event.body.userCreated.download_link;
+          this.pipeModules.upload.push(upload);
+          if(isFinish) this.onFinish(upload.pipe_id);
+          return;
+      }
+    })
+  }
+
+  onFinish(paramId: any = null) {
     let finalPipe: any = {
+      id: paramId,
       title: this.formGroup.get('title')?.value!,
       description: this.formGroup.get('description')?.value!,
       date: this.formGroup.get('date')?.value!,
       tags: this.tags,
       modules: this.pipeModules,
-      url: this.formGroup.get('url')?.value!,
+      url: this.localStorageUserInfo.profile_pic,
       likes: 0,
       dislikes: 0,
       comments: [],
       impactFactor: 0,
       isHidden: false,
       isDeleted: false,
-      author: 'mdrashed@gmail.com',
+      author: this.localStorageUserInfo.email,
     };
+
+    console.log("final pipe ----- > " , finalPipe)
     this.api.postPipe(finalPipe).subscribe(data => {
       this.isYoutube = false;
       this.isBlog = false;
       this.isLive = false;
       this.isCourse = false;
       this.introFormHidden = false;
+      this.formGroup.reset();
+      this.blogForm.reset();
+      this.courseForm.reset();
+      this.liveForm.reset();
+      this.tags = [];
+      this.pipeModules = {
+        youtube: [],
+        blog: [],
+        course: [],
+        live: [],
+        upload: [],
+      };
+      this.router.navigate(['/pipes']);
     })
   }
 }
+
+
+function generateUniqueId(): string {
+  let id = '';
+  for (let i = 0; i < 20; i++) {
+    id += Math.floor(Math.random() * 10);
+  }
+  return id;
+}
+

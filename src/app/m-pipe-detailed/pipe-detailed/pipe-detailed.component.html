@@ -21,7 +21,43 @@
                         </div>
                         <div class="itemYoutubeModuleLeftNote">{{module.note}}</div>
                     </div>
+
+
                 </div>
+                <button *ngIf="pipeDetails.author === localStorageUserInfo.email" mat-button color="primary"
+                    (click)="editClick(module)"><mat-icon>edit</mat-icon></button>
+                <button *ngIf="pipeDetails.author === localStorageUserInfo.email" mat-button color="warn"
+                    (click)="deleteClick(module)"><mat-icon>delete</mat-icon></button>
+                <div class="itemYoutubeModuleRight">
+                    <button mat-button color="primary">Add module as completed</button>
+                </div>
+            </div>
+
+
+            <!-- for upload -->
+            <div *ngIf="module.category=='upload'" class="youtubeModule">
+                <div class="itemYoutubeModuleLeft" (click)="onClickUpload(module.download_link)">
+
+                    <div class="itemYoutubeModuleLeftHeader">
+                        <div class="itemYoutubeModuleLeftHeaderTitle">{{module.title}}</div>
+                        <div class="itemYoutubeModuleLeftHeaderImage">
+                            <img src='../../../assets/upload.svg' alt="">
+                        </div>
+                    </div>
+
+                    <!-- <div class="itemYoutubeModuleLeftHeader">{{module.title}}</div> -->
+                    <div class="itemYoutubeModuleLeftRange">
+                        <div class="itemYoutubeModuleLeftRange"> Click to Download
+                        </div>
+                        <!-- <div class="itemYoutubeModuleLeftNote">{{module.note}}</div> -->
+                    </div>
+
+
+                </div>
+                <button *ngIf="pipeDetails.author === localStorageUserInfo.email" mat-button color="primary"
+                    (click)="editClick(module)"><mat-icon>edit</mat-icon></button>
+                <button *ngIf="pipeDetails.author === localStorageUserInfo.email" mat-button color="warn"
+                    (click)="deleteClick(module)"><mat-icon>delete</mat-icon></button>
                 <div class="itemYoutubeModuleRight">
                     <button mat-button color="primary">Add module as completed</button>
                 </div>
@@ -44,6 +80,12 @@
                         <div class="itemYoutubeModuleLeftNote">{{module.note}}</div>
                     </div>
                 </div>
+
+                <button *ngIf="pipeDetails.author === localStorageUserInfo.email" mat-button color="primary"
+                    (click)="editClick(module)"><mat-icon>edit</mat-icon></button>
+                <button *ngIf="pipeDetails.author === localStorageUserInfo.email" mat-button color="warn"
+                    (click)="deleteClick(module)"><mat-icon>delete</mat-icon></button>
+
                 <div class="itemYoutubeModuleRight">
                     <button mat-button color="primary">Add module as completed</button>
                 </div>
@@ -67,6 +109,12 @@
                         <div class="itemYoutubeModuleLeftNote">{{module.note}}</div>
                     </div>
                 </div>
+
+                <button *ngIf="pipeDetails.author === localStorageUserInfo.email" mat-button color="primary"
+                    (click)="editClick(module)"><mat-icon>edit</mat-icon></button>
+                <button *ngIf="pipeDetails.author === localStorageUserInfo.email" mat-button color="warn"
+                    (click)="deleteClick(module)"><mat-icon>delete</mat-icon></button>
+
                 <div class="itemYoutubeModuleRight">
                     <button mat-button color="primary">Add module as completed</button>
                 </div>
@@ -91,9 +139,16 @@
                         <div class="itemYoutubeModuleLeftNote">{{module.note}}</div>
                     </div>
                 </div>
+
+                <button *ngIf="pipeDetails.author === localStorageUserInfo.email" mat-button color="primary"
+                    (click)="editClick(module)"><mat-icon>edit</mat-icon></button>
+                <button *ngIf="pipeDetails.author === localStorageUserInfo.email" mat-button color="warn"
+                    (click)="deleteClick(module)"><mat-icon>delete</mat-icon></button>
+
                 <div class="itemYoutubeModuleRight">
                     <button mat-button color="primary">Add module as completed</button>
                 </div>
+
             </div>
 
 
